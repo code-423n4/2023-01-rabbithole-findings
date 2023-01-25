@@ -1,0 +1,1 @@
+Change every public function to external to reduce the gas consumption.
