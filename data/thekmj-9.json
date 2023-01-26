@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "thekmj",
+  "risk": "3",
+  "title": "`RabbitHoleReceipt`: The `onlyMinter` modifier does not revert on wrong `msg.sender`",
+  "issueId": 9,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/9"
+}
