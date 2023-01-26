@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "critical-or-high",
+  "risk": "3",
+  "title": "It's possible to inject malicious JS in questId value - phishing attacks",
+  "issueId": 58,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/58"
+}
