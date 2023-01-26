@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "mookimgo",
+  "risk": "3",
+  "title": "Wrong onlyMinter implementation leads to unlimited Receipt NFT mint",
+  "issueId": 10,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/10"
+}
