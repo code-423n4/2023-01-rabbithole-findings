@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "rvierdiiev",
+  "risk": "2",
+  "title": "QuestFactory.mintReceipt should not be able to mint token for quest that is not started yet",
+  "issueId": 24,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/24"
+}
