@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xbrett8571",
+  "risk": "3",
+  "title": "Unrestricted Initialization Vulnerability in `RabbitHoleReceipt.sol` Due to Unsafe Disable Initializers Function",
+  "issueId": 17,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/17"
+}
