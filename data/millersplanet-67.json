@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "millersplanet",
+  "risk": "3",
+  "title": "Unrestricted minting of RabbitHoleReceipt tokens (ERC-721) due to improper access control",
+  "issueId": 67,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/67"
+}
