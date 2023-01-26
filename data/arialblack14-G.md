@@ -9,7 +9,7 @@
 | [G-4](#G13) |`>=` costs less gas than `>`. | 3
 | [G-5](#G15) |`<x> += <y>` costs more gas than `<x> = <x> + <y>` for state variables | 1
 
-*Total: 15 issues.*
+*Total: 5 issues.*
 *Note: The findings for issue with id 1 are different from the c4udit output.*
 
 ---
