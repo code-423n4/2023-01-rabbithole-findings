@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xbrett8571",
+  "risk": "2",
+  "title": "Missing Implementation of withdrawRemainingTokens() Function in Quest Smart Contract",
+  "issueId": 21,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/21"
+}
