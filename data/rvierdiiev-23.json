@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "rvierdiiev",
+  "risk": "3",
+  "title": "Erc20Quest.withdrawFee can be called by anyone multiple times in order to sent more tokens to fee recepient and make Erc20Quest insolvent",
+  "issueId": 23,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/23"
+}
