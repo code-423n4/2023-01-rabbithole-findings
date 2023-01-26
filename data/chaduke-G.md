@@ -24,4 +24,17 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 ```
 One modifier ``onlyOwner`` can be eliminated to save gas here.
 
+G3: https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L185
+To save gas here, just needs to assign ``royaltyRecipient`` to ``receiver``. There is no need for the stack variable ``royaltyPayment`` and the return statement. Further gas is saved by checking whether ``royaltyFee !=0``. 
+```
+function royaltyInfo(
+        uint256 tokenId_,
+        uint256 salePrice_
+    ) external view override returns (address receiver, uint256 royaltyAmount) {
+        require(_exists(tokenId_), 'Nonexistent token');
+ 
+        if(royaltyFee !=0) royaltyAmount = (salePrice_ * royaltyFee) / 10_000;
+        receiver = royaltyRecipient;
+    }
 
+```
