@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xbrett8571",
+  "risk": "2",
+  "title": "Unchecked Interface Implementation for ReceiptRenderer and IQuestFactory Interfaces.",
+  "issueId": 19,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/19"
+}
