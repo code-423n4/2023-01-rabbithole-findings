@@ -11,3 +11,5 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 ```
 function start() public virtual onlyOwner {
 ```
+
+Fix suggestion: update docs image to clarify that only owner can trigger `start()` function
