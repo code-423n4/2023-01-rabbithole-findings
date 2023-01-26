@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "mert_eren",
+  "risk": "3",
+  "title": "MintRecepient can be used after endtime of quote and can lead unexpected situation.",
+  "issueId": 64,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/64"
+}
