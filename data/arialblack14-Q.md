@@ -10,7 +10,7 @@
 | [L-1](#L1) | Use of`block.timestamp`                    |     5     |
 | [L-2](#L5) | Lock pragmas to specific compiler version. |    10    |
 
-*Total: 5 issues.*
+*Total: 2 issues.*
 
 ### Summary of non-critical issues
 
