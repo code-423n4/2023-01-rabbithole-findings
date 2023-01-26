@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xbrett8571",
+  "risk": "2",
+  "title": "Unchecked msg.sender in createQuest function allows malicious contract to create quests",
+  "issueId": 15,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/15"
+}
