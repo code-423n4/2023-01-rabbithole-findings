@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "HollaDieWaldfee",
+  "risk": "3",
+  "title": "Erc1155Quest.sol: withdrawRemainingTokens function withdraws unclaimed rewards",
+  "issueId": 47,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/47"
+}
