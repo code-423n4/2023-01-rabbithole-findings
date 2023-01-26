@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "HollaDieWaldfee",
+  "risk": "3",
+  "title": "Erc20Quest: Anyone can withdraw protocolFee multipleTimes which leads to loss for users that want to claim rewards",
+  "issueId": 37,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/37"
+}
