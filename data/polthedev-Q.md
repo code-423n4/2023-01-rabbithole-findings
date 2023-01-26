@@ -1,0 +1,1 @@
+In the Erc20Quest.sol, the comment of the start function says: [...]  It also requires that the start time has passed; - but we don't have a variable to track the start time, so the owner can start the quest whenever he/she wants
