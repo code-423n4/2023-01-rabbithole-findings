@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Cryptor",
+  "risk": "3",
+  "title": "_mint and mintbatch function provides no access control ",
+  "issueId": 48,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/48"
+}
