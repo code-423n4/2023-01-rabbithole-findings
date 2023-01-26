@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "HollaDieWaldfee",
+  "risk": "2",
+  "title": "Quest.sol: Admin should be able to withdraw all funds when quest has not started yet",
+  "issueId": 39,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/39"
+}
