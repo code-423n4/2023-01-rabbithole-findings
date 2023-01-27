@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Cryptor",
+  "risk": "2",
+  "title": "No way for users to retrieve the time left for a quest allowing the owner to potentially steal funds ",
+  "issueId": 81,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/81"
+}
