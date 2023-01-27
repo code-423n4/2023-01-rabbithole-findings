@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "DadeKuma",
+  "risk": "2",
+  "title": "Royalties over 100% can be used to soft-lock transfers of tickets and receipts",
+  "issueId": 108,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/108"
+}
