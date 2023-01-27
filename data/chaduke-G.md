@@ -85,3 +85,9 @@ uint256 redeemableTokenCount = 0;
         }
 ```
 
+G7. Use uint for ``questId`` can save much gas. Currently, ``string`` is used for ``questId``. 
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L98
+
+Suggestion:  using ``string`` for ``questId`` will waste much gas especially when it is used in mappings. Use ``uint`` instead and use OpenZeppelin's counter.sol for generating questId. Introduce ``questTitle`` to store the title information.
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Counters.sol
