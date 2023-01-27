@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Cryptor",
+  "risk": "2",
+  "title": "_calculateRewards is incorrect for ERC115",
+  "issueId": 83,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/83"
+}
