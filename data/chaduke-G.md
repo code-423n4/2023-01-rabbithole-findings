@@ -71,3 +71,17 @@ Much gas can be saved for ``getOwnedTokenIdsOfQuest() `` by doing two things: 1)
 
 G5. https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L162
 We can save gas here by not performing a zero address check for ``QuestFactoryContract``. Instead, the zero address check should be performed by less called functions: the constructor and ``setQuestFactory()``.  In this way, we know for sure that ``QuestFactoryContract != addresss(0)`` when ``tokenURI()`` is called. 
+
+G6. https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L96-L118
+The ``claim()`` function calls ``_setClaimed(tokens)`` to iterate each token in ``tokens`` and blindly set it to true regardless of its truth value. This is a waste of gas. We can leverage the for-loop earlier (used to calculate ``redeemableTokenCount``) to save gas since we can avoid some blind writes here and another for-loop.
+
+```
+uint256 redeemableTokenCount = 0;
+        for (uint i = 0; i < tokens.length; i++) {
+            if (!claimedList[tokens[i]]) {
+                redeemableTokenCount++;
+                claimedList[tokens[i]] == true;   // @audit: only those false need to be changed to true
+            }
+        }
+```
+
