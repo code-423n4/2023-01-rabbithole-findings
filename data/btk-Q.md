@@ -12,6 +12,7 @@
 | [L-07] | `royaltyFee` is not capped at 100%                            | 2             |
 | [L-08] | Protocol is using deprecated `npm` dependency (axios)         | 1             |
 | [L-09] | Value is not validated to be different than the existing one  | 4             |
+| [L-10] | Add a timelock to critical functions                          | 3             |
 
 
 | Total Non-Critical issues   |
@@ -37,6 +38,9 @@
 | [NC-16] | Contracts should have full test coverage                                                  | All Contracts |
 | [NC-17] | Critical changes should use-two step procedure                                            | 3             |
 | [NC-18] | Generate perfect code headers every time                                                  | All Contracts |
+| [NC-19] | There is no need to cast a variable that is already an address, such as `address(x)`      | 2             |
+| [NC-20] | Add NatSpec comment to `mapping`                                                          | 6             |
+
 
 ## [L-01] `Address(0)` checks
 
@@ -318,6 +322,29 @@ While the value is validated to be in the constant bounds, it is not validated t
         emit MinterAddressSet(minterAddress_);
     }
 ```
+
+## [L-10] Add a timelock to critical functions
+
+#### Description
+
+It is a good practice to give time for users to react and adjust to critical changes. A timelock provides more guarantees and reduces the level of trust required, thus decreasing risk for users. It also indicates that the project is legitimate.
+
+```solidity
+    function setRoyaltyFee(uint256 royaltyFee_) public onlyOwner {
+        royaltyFee = royaltyFee_;
+        emit RoyaltyFeeSet(royaltyFee_);
+    }
+```
+
+#### Lines of code 
+
+- [QuestFactory.sol:186](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L186)
+- [RabbitHoleReceipt.sol:90](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90)
+- [RabbitHoleTickets.sol:66](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66)
+
+#### Recommended Mitigation Steps
+
+Consider adding a timelock to the critical changes.
 
 ## [NC-01] Use `uint256` instead `uint`
 
@@ -734,4 +761,69 @@ I recommend using header for Solidity code layout and readability.
 /*//////////////////////////////////////////////////////////////
                            TESTING 123
 //////////////////////////////////////////////////////////////*/
+```
+
+## [NC-19] There is no need to cast a variable that is already an address, such as `address(x)`
+
+#### Description
+
+There is no need to cast a variable that is already an `address`, such as `address(x)`, `x` is also `address`.
+
+```solidity
+Erc1155Quest newQuest = new Erc1155Quest(
+                rewardTokenAddress_,
+                endTime_,
+                startTime_,
+                totalParticipants_,
+                rewardAmountOrTokenId_,
+                questId_,
+                address(rabbitholeReceiptContract)
+            );
+```
+
+#### Lines of code 
+
+- [QuestFactory.sol:82](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L82)
+- [QuestFactory.sol:115](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L115)
+
+#### Recommended Mitigation Steps
+
+Use directly variable :
+
+```solidity
+Erc1155Quest newQuest = new Erc1155Quest(
+                rewardTokenAddress_,
+                endTime_,
+                startTime_,
+                totalParticipants_,
+                rewardAmountOrTokenId_,
+                questId_,
+                rabbitholeReceiptContract
+            );
+```
+
+## [NC-20] Add NatSpec comment to `mapping`   
+
+#### Description
+
+Add NatSpec comments describing mapping keys and values.
+
+```solidity
+    mapping(uint => uint) public timestampForTokenId;
+```
+
+#### Lines of code 
+
+- [Quest.sol:24](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L24)
+- [QuestFactory.sol:20](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L20)
+- [QuestFactory.sol:28](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L28)
+- [QuestFactory.sol:30](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L30)
+- [RabbitHoleReceipt.sol:30](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L30)
+- [RabbitHoleReceipt.sol:34](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L34)
+
+#### Recommended Mitigation Steps
+
+```solidity
+ /// @dev  uint(timestamp) => uint(token Id)
+    mapping(uint => uint) public timestampForTokenId;
 ```
