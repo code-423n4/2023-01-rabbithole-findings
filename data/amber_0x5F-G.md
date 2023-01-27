@@ -1,0 +1,11 @@
+# quests[questId_].numberMinted++ should be unchecked {quests[questId_].numberMinted++}.
+
+At : https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L226
+
+the numberMinted value is checked at :
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L220
+
+the totalParticipants is already set at quest creation and there is no entrance to change it, so that it is impossible to overflow for the value of numberMinted. 
+
+Use unchecked will save gas.
