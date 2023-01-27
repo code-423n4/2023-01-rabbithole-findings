@@ -1,4 +1,4 @@
-### Public functions can be set as external 
+### 1. Public functions can be set as external 
 
 Public and external functions differs in terms of gas usage. The former use more gass than the latter. This is due to the fact that Solidity copies arguments to memory on a public function while external read from calldata which is cheaper than memory allocation.
 
@@ -37,3 +37,8 @@ The following public functions could be set external to save gas and improve cod
 
 [TicketRenderer#L18](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/TicketRenderer.sol#L18)
 
+---
+
+### 2. X += Y costs more gas than X = X + Y for state variables
+
+[Quest.sol#L115](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L115)
