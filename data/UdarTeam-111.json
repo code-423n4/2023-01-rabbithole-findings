@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "UdarTeam",
+  "risk": "3",
+  "title": "[H-01] Any user can drain rewardToken contract",
+  "issueId": 111,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/111"
+}
