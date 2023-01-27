@@ -16,3 +16,8 @@ At : https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c
 Variable `questId` does not change once set in the constructor, immutable will save gas when read the variable at : 
 
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L99
+
+## Variable `redeemedTokens` may not be assigned 0 in the constructor in Quest.sol.
+At : https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L45
+
+`redeemedTokens` was originally 0 when the Quest was created. Delete the code is fine ans saves gas.
