@@ -81,4 +81,6 @@ In contrast to its counterpart for ERC20Quest, ``withdrawRemainingTokens()`` for
 
 Mitigation: have similar implementation like the case for ERC20Quest, only allow ``withdrawRemainingTokens()``  to withdraw ``remainingTokens``, not ``unclaimedTokens``. Create another function ``withdrawUnclaimedTokens()`` for the later and make it only callable after ``claimDeadline`` expires. 
 
+QA9. If a sponsor sends the wrong ERC20/ERC1155 to the quest contract (e.g. due to miscommunication), for example,  instead of sending USDC, the sponsor sends USDT, then they will be locked in the contract forever since there is no way to withdraw arbitrary ERC20/ERC1155 tokens. 
 
+Mitigation: introduce generic ``withdrawERC20(address tokenAddress)`` and ``withdraw1155(address tokenAddress)``so that the host can withdraw arbitrary ERC20/ERC1155 tokens. 
