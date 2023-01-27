@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xMAKEOUTHILL",
+  "risk": "2",
+  "title": "Possible reentrancy in RabbitHoleReceipt.mint function",
+  "issueId": 104,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/104"
+}
