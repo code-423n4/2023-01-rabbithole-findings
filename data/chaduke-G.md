@@ -38,3 +38,36 @@ function royaltyInfo(
     }
 
 ```
+
+G4. https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L109-L135
+Much gas can be saved for ``getOwnedTokenIdsOfQuest() `` by doing two things: 1) Using only ONE for-loop to calculate the final ``filteredTokens``; 2) Revising the length of array ``filteredTokens`` directly using assembly.
+
+```
+ function getOwnedTokenIdsOfQuest(
+        string memory questId_,
+        address claimingAddress_
+    ) public view returns (uint[] memory  filteredTokens) {
+        uint msgSenderBalance = balanceOf(claimingAddress_);
+         filteredTokens = new uint[](msgSenderBalance);
+        uint foundTokens = 0;
+
+        for (uint i; i < msgSenderBalance;) {
+            uint tokenId = tokenOfOwnerByIndex(claimingAddress_, i);
+
+            if (keccak256(bytes(questIdForTokenId[tokenId])) == keccak256(bytes(questId_))) {
+                filteredTokens[i] = tokenId;
+                foundTokens++;
+            }
+
+            unchecked{++i;}
+        }
+   
+       // @save the size of the array
+       assembly{
+               mstore(filteredTokens, foundTokens)
+      }
+}
+```
+
+G5. https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L162
+We can save gas here by not performing a zero address check for ``QuestFactoryContract``. Instead, the zero address check should be performed by less called functions: the constructor and ``setQuestFactory()``.  In this way, we know for sure that ``QuestFactoryContract != addresss(0)`` when ``tokenURI()`` is called. 
