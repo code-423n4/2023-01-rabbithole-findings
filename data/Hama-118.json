@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Hama",
+  "risk": "2",
+  "title": "transfer zero amount can be reverted",
+  "issueId": 118,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/118"
+}
