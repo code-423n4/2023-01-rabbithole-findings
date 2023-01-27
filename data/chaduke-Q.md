@@ -28,15 +28,8 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
     }
 ```
 
-QA5: Function ``createQuest()`` failes to check whether ``rewardTokenAddress_`` is allowed when it is a ERC1155. As a result, a malicious ERC1155 reward token address can be used to create a quest. 
-https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L61-L69
 
-Mitigation: To fix this, move the following line at the beginning of the function rather than only in the if-block of ERC20.
-```
-if (rewardAllowlist[rewardTokenAddress_] == false) revert RewardNotAllowed();
-```
-
-QA6: There is a contradictory design  in terms of the number of rabbitHoleReceipts a user can win. 
+QA5: There is a contradictory design  in terms of the number of rabbitHoleReceipts a user can win. 
 
 
 Analysis: In one place, it allows MANY: https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L99
@@ -59,14 +52,14 @@ if (quests[questId_].addressMinted[msg.sender] == true) revert AddressAlreadyMin
 
 ```
 
-QA7. Signature replay attack is possible for ``mintReceipt()`` such that a malicious user can mint receipts for free. 
+QA6. Signature replay attack is possible for ``mintReceipt()`` such that a malicious user can mint receipts for free. 
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L219
 
 Analysis: This is because the signature only signs for ``(winnerAddress, questId)``, so the signature can be reused for another contract and another blockchain to mint free receipts. 
 
 Mitigation: To prevent signature replay attack, include nonce, contract address and blockchain ID in the hash as well. 
 
-QA8. ``royaltyFee`` should never be greater than 100% of the salePrice (represented as 10_000). 
+QA7. ``royaltyFee`` should never be greater than 100% of the salePrice (represented as 10_000). 
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66-L69
 
 The mitigation is to add such a check:
@@ -79,7 +72,7 @@ The mitigation is to add such a check:
     }
 ```
 
-QA9. If some winners do not claim their reward tokens, then these reward tokens will be stuck in the contract forever.
+QA8. If some winners do not claim their reward tokens, then these reward tokens will be stuck in the contract forever.
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L150
 
 Analysis: the host only have one method, ``withdrawRemainingTokens()``, to withdraw reward tokens from the quest contract. However, if there are some winners who never want to/forget to claim their reward tokens, then they will be stuck in the contract forever. ``withdrawRemainingTokens()`` will only allow the host to withdraw the remaining tokens, not those that are pending claims, see below:
