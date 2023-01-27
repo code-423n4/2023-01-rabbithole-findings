@@ -168,7 +168,7 @@ File: [2023-01-rabbithole/quest-protocol/contracts/RabbitHoleReceipt.sol](https:
 Using the addition operator instead of plus-equals saves **[113 gas](https://gist.github.com/IllIllI000/cbbfb267425b898e5be734d4008d4fe8)**
 
 ##### Recommendation
-Use `<x> += <y>` instead.
+Use `<x> = <x> + <y>` instead.
 
 ##### *Instances (1):*
 
