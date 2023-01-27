@@ -72,3 +72,13 @@ The mitigation is to add such a check:
     }
 ```
 
+QA8. Winners will not be able to claim their rewards after  ``rewardswithdrawRemainingTokens()`` is called!
+
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L54-L63
+
+In contrast to its counterpart for ERC20Quest, ``withdrawRemainingTokens()`` for ERC1155Quest will withdraw even unclaimed reward tokens. As a result, winners will not be able to claim their rewards after the call.
+
+Mitigation: have similar implementation like the case for ERC20Quest, only allow ``withdrawRemainingTokens()``  to withdraw ``remainingTokens``, not ``unclaimedTokens``. Create another function ``withdrawUnclaimedTokens()`` for the later and make it only callable after ``claimDeadline`` expires. 
+
+
