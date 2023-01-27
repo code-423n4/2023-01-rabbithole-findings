@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xbepresent",
+  "risk": "3",
+  "title": "Participant's rewards funds may be trapped via RabbitHoleReceipt.sol::getOwnedTokenIdsOfQuest() function",
+  "issueId": 150,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/150"
+}
