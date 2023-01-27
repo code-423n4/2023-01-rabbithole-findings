@@ -138,3 +138,66 @@ For non-library contracts, floating pragmas may be a security risk for applicati
 - [L003 - Unspecific Compiler Version Pragma](https://github.com/byterocket/c4-common-issues/blob/main/2-Low-Risk.md#l003---unspecific-compiler-version-pragma)
 - [Version Pragma | Solidity documents](https://docs.soliditylang.org/en/latest/layout-of-source-files.html#version-pragma)
 - [4.6 Unspecific compiler version pragma | Consensys Audit of 1inch Liquidity Protocol](https://consensys.net/diligence/audits/2020/12/1inch-liquidity-protocol/#unspecific-compiler-version-pragma)
+
+
+## [L-04] Outdated Compiler Version
+
+### Description
+
+Using an older compiler version might be risky, especially if the version in question has faults and problems that have been made public.
+
+### Findings
+
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol => `pragma solidity ^0.8.15;`
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol => `pragma solidity ^0.8.15;`
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol => `pragma solidity ^0.8.15;`
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol => `pragma solidity ^0.8.15;`
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol => `pragma solidity ^0.8.15;`
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol => `pragma solidity ^0.8.15;`
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol => `pragma solidity ^0.8.15;`
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/TicketRenderer.sol => `pragma solidity ^0.8.15;`
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuest.sol => `pragma solidity ^0.8.15;`
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuestFactory.sol => `pragma solidity ^0.8.15;`
+
+### Resources
+
+- [SWC-102](https://swcregistry.io/docs/SWC-102)
+- [Etherscan Solidity Bug Info](https://etherscan.io/solcbuginfo)
+
+
+## [L-05] Use of abi.encodePacked instead of bytes.concat() for Solidity version >= 0.8.4
+
+### Description
+
+From the Solidity version `0.8.4` it was added the possibility to use `bytes.concat` with variable number of `bytes` and `bytesNN` arguments. With a more evocative name, it functions as a restricted `abi.encodePacked`.
+
+### Findings
+
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol => `pragma solidity ^0.8.15;`
+  ```Solidity
+  ::72 =>         if (keccak256(abi.encodePacked(contractType_)) == keccak256(abi.encodePacked('erc20'))) {
+  ::105 =>         if (keccak256(abi.encodePacked(contractType_)) == keccak256(abi.encodePacked('erc1155'))) {
+  ::211 =>         bytes32 messageDigest = keccak256(abi.encodePacked('\x19Ethereum Signed Message:\n32', hash_));
+  ::222 =>         if (keccak256(abi.encodePacked(msg.sender, questId_)) != hash_) revert InvalidHash();
+  ```
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol => `pragma solidity ^0.8.15;`
+  ```Solidity
+  ::37 =>         return string(abi.encodePacked('data:application/json;base64,', Base64.encode(dataURI)));
+  ::48 =>         bytes memory attributes = abi.encodePacked(
+  ::63 =>         bytes memory dataURI = abi.encodePacked(
+  ::83 =>         bytes memory attribute = abi.encodePacked(
+  ::101 =>         bytes memory svg = abi.encodePacked(
+  ::113 =>         return string(abi.encodePacked('data:image/svg+xml;base64,', Base64.encode(svg)));
+  ```
+- https://github.com/rabbitholegg/quest-protocol/tree/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/TicketRenderer.sol => `pragma solidity ^0.8.15;`
+  ```Solidity
+  ::19 =>         bytes memory dataURI = abi.encodePacked(
+  ::30 =>         return string(abi.encodePacked('data:application/json;base64,', Base64.encode(dataURI)));
+  ::37 =>         bytes memory svg = abi.encodePacked(
+  ::46 =>         return string(abi.encodePacked('data:image/svg+xml;base64,', Base64.encode(svg)));
+  ```
+
+### Resources
+
+- [Solidity 0.8.4 Release Announcement](https://blog.soliditylang.org/2021/04/21/solidity-0.8.4-release-announcement/)
+- [Remove abi.encodePacked #11593](https://github.com/ethereum/solidity/issues/11593)
