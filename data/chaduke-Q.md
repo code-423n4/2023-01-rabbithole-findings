@@ -72,29 +72,3 @@ The mitigation is to add such a check:
     }
 ```
 
-QA8. If some winners do not claim their reward tokens, then these reward tokens will be stuck in the contract forever.
-https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L150
-
-Analysis: the host only have one method, ``withdrawRemainingTokens()``, to withdraw reward tokens from the quest contract. However, if there are some winners who never want to/forget to claim their reward tokens, then they will be stuck in the contract forever. ``withdrawRemainingTokens()`` will only allow the host to withdraw the remaining tokens, not those that are pending claims, see below:
-```
- function withdrawRemainingTokens(address to_) public override onlyOwner {
-        super.withdrawRemainingTokens(to_);
-
-        uint unclaimedTokens = (receiptRedeemers() - redeemedTokens) * rewardAmountInWeiOrTokenId;
-        uint256 nonClaimableTokens = IERC20(rewardToken).balanceOf(address(this)) - protocolFee() - unclaimedTokens;
-        IERC20(rewardToken).safeTransfer(to_, nonClaimableTokens);
-    }
-
-function withdrawRemainingTokens(address to_) public override onlyOwner {
-        super.withdrawRemainingTokens(to_);
-        IERC1155(rewardToken).safeTransferFrom(
-            address(this),
-            to_,
-            rewardAmountInWeiOrTokenId,
-            IERC1155(rewardToken).balanceOf(address(this), rewardAmountInWeiOrTokenId),
-            '0x00'
-        );
-    }
-```
-
-Mitigation: implement withdrawUnclaimedTokens() to allow the host to withdraw those unclaimed rewards tokens, maybe after certain ``claimDeadline`` to give enough time for the winners to claim. 
