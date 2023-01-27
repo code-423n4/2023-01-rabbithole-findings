@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "AkshaySrivastav",
+  "risk": "3",
+  "title": "Funds are lost if owner withdraws protocol fee before withdrawing remaining tokens. ",
+  "issueId": 115,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/115"
+}
