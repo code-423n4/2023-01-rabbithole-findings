@@ -32,3 +32,20 @@ To fix this, move the following line at the beginning of the function rather tha
 ```
 if (rewardAllowlist[rewardTokenAddress_] == false) revert RewardNotAllowed();
 ```
+
+QA6: There is a contradictory design  in terms of the number of rabbitHoleReceipts a user can win. 
+In one place, it allows MANY: https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L99
+```
+ uint[] memory tokens = rabbitHoleReceiptContract.getOwnedTokenIdsOfQuest(questId, msg.sender);
+```
+which retrieves a whole list of wined receipt tokens. 
+
+In another place, it is restricted to ONE:
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L221
+```
+ if (quests[questId_].addressMinted[msg.sender] == true) revert AddressAlreadyMinted();
+```
+Each address can mint at most once. 
+
+In general, we should allow a user to win multiple rabbitHoleReceipts. Restrictions, if any, should be enforced on a per quest basis, not across-the-board. 
+
