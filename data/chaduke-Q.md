@@ -24,3 +24,11 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
         _;
     }
 ```
+
+QA5: Function ``createQuest()`` failes to check whether ``rewardTokenAddress_`` is allowed when it is a ERC1155. As a result, a malicious ERC1155 reward token address can be used to create a quest. 
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L61-L69
+
+To fix this, move the following line at the beginning of the function rather than only in the if-block of ERC20.
+```
+if (rewardAllowlist[rewardTokenAddress_] == false) revert RewardNotAllowed();
+```
