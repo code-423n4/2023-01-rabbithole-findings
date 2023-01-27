@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "carrotsmuggler",
+  "risk": "3",
+  "title": "Funds can be stuck due to wrong order of operations",
+  "issueId": 122,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/122"
+}
