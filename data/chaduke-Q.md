@@ -14,7 +14,15 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 
 QA3. The owner has overly-centralized control in the QuestFactory contract, including 1) ``changeCreateQuestRole()``, 2) ``setClaimSignerAddress()``, 3) ``setClaimSignerAddress()``, 4) ``setRabbitHoleReceiptContract()``, 5) ``setRewardAllowlistAddress`` 6) ``setRewardAllowlistAddress()``, and 7)  ``changeCreateQuestRole()``
 
-Mitigation: A balance-and-check should be introduced so that each manager is responsible only for a couple of tasks. 
+A compromised/malicious owner can lead to:
+1) Set an accomplice's address as the ``setClaimSignerAddress``, so that the accomplice can sign many receipts for free. 
+
+2) In charge of all the ERC1155Quests, since the owner is the owner of all ERC1155Quests and steal reward tokens from any ERC1155Quest by calling ``withdrawRemainingTokens(to)``.
+
+3) Enable the introduction of malicious ERC20/ERC1155  reward tokens by calling ``setRewardAllowlistAddress()``
+
+
+Mitigation: A balance-and-check should be introduced: restrict the power of the owner, assign some privileges to other roles/admins. 
 
 QA4. 
 The following modifier name is not consistent with its implementation logic. Better change it to ``onlyAfterQuestEnd()``.  
