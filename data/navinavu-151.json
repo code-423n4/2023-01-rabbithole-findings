@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "navinavu",
+  "risk": "3",
+  "title": "Anyone can mint existing Quest IDs RHReceipt NFTs and claim ERC1155 and ERC20 quest rewards due to a non-reverting onlyMinter modifier",
+  "issueId": 151,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/151"
+}
