@@ -6,6 +6,9 @@
 | L-02      | Ownable + OwnableUpgradeable: Owner can renounce ownership | - | 6 |
 | L-03      | Ownable + OwnableUpgradeable: Does not implement 2-Step-Process for transferring ownership | - | 6 |
 | L-04      | `questIdCount` should start at `0` | QuestFactory.sol | 1 |
+| L-05      | Check value of `royaltyFee` | RabbitHoleReceipt.sol | 1 |
+| L-06      | `initialize` function should call setters | RabbitHoleReceipt.sol | 1 |
+| L-07      | `rabbitHoleReceiptContract` should not be mutable | QuestFactory.sol | 1 |
 | N-01      | Lines too long | - | 3 |
 | N-02      | Remove TODO comments | interfaces/IQuest.sol | 1 |
 | N-03      | Remove unnecessary imports | Quest.sol | 1 |
@@ -84,6 +87,23 @@ This means after the first quest is created it is set to `2`, after the second q
 It was determined with the sponsor that this variable should count the number of quests created.  
 
 Therefore the constructor should not set it to `1` but instead leave it at its default value which is `0`.  
+
+## [L-05] Check value of `royaltyFee`
+The `RabbitHoleReceipt.setRoyaltyFee` function does not check the value that `royaltyFee` is set to ([https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90-L93](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90-L93)).  
+
+It should be checked that the value is not greater than 10,000 which is 100%.  
+
+## [L-06] `initialize` function should call setters
+The `RabbitHoleReceipt.initialize` function sets the `royaltyFee` and `minterAddress` directly ([https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L43-L56](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L43-L56)).  
+
+However it should call `setMinterAddress` and `setRoyaltyFee` such that the `MinterAddressSet` and `RoyaltyFeeSet` events are emitted.  
+
+## [L-07] `rabbitHoleReceiptContract` should not be mutable
+The `QuestFactory.setRabbitHoleReceiptContract` function ([https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L172-L174](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L172-L174)) allows to set the `rabbitHoleReceiptContract` variable.  
+
+This is dangerous because all quest contracts rely on this for their operation.  
+
+I propose that the `rabbitHoleReceiptContract` should only be set once in the `initialize` function.  
 
 ## [N-01] Lines too long
 The maximum line length should be 164 characters.  
