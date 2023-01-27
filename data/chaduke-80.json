@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "chaduke",
+  "risk": "2",
+  "title": "A user can mint numerous Receipts for FREE when claimSignerAddress is set to ZERO inadvertently or maliciously...",
+  "issueId": 80,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/80"
+}
