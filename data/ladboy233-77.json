@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "ladboy233",
+  "risk": "2",
+  "title": "The user may not able to claim the eligible amount after the end timestamp if the admin only calls withdrawFee multiple times",
+  "issueId": 77,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/77"
+}
