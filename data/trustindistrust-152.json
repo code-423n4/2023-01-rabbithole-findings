@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "trustindistrust",
+  "risk": "3",
+  "title": "Broken modifier implementation allows anyone to call `mint*` functions",
+  "issueId": 152,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/152"
+}
