@@ -49,3 +49,7 @@ Each address can mint at most once.
 
 In general, we should allow a user to win multiple rabbitHoleReceipts. Restrictions, if any, should be enforced on a per quest basis, not across-the-board. 
 
+QA7. Signature replay attack is possible for ``mintReceipt()`` such that a malicious user can mint receipts for free. 
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L219
+This is because the signature only signs for ``(winnerAddress, questId)``, so the signature can be reused for another contract and another blockchain. To prevent signature replay attack, include nonce, contract address and blockchain ID in the hash as well. 
+
