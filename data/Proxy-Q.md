@@ -1,0 +1,2 @@
+Non-library or interface files should use locked pragma solidity, not unlocked.
+Files that use unlocked pragma: ERC20Quest.sol, ERC1155Quest.sol, Quest.sol, QuestFactory.sol, RabbitHoleReceipt.sol, RabbitHoleTickets.sol, ReceiptRenderer.sol, TicketRenderer.sol
