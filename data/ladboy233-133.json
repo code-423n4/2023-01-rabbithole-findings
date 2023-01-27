@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "ladboy233",
+  "risk": "2",
+  "title": "Lack of reentrancy protection for ERC20Quest.sol#withdrawRemainingToken",
+  "issueId": 133,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/133"
+}
