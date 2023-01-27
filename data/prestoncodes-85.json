@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "prestoncodes",
+  "risk": "3",
+  "title": "All users can be declined claiming receipts on any ERC20 pool after the quest `endTime` has passed.",
+  "issueId": 85,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/85"
+}
