@@ -1,8 +1,12 @@
-# Incorrect Receipt Rendering
+# Incorrect Receipt Text Rendering
 
-The function [`generateSVG`](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L100) in `ReceiptRenderer.sol` contract contains erroneous code leading to an incorrect receipt rendering.
+[`ReceiptRenderer.sol#L100`](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L100)
 
-Here is the code:
+The receipt text is rendered incorrectly.
+
+### Proof of Concept
+
+Here is the code of `generateSVG` function:
 
 ```solidity
 /// @dev generates the on-chain SVG for an ERC-721 token ID
@@ -57,9 +61,11 @@ Here is the respective screenshot:
 
 ![Incorrect](https://res.cloudinary.com/enggym/image/upload/v1674806699/C4/Incorrect.jpg)
 
-As can be seen above, the receipt is generated on the right, however, its two lines of content are overlapping.
+As can be seen above, the receipt (which is generated on the right hand side), contains two overlapping lines of text.
 
-To rectify that, we’ll have to tweak the `x` and `y` attributes of the `text` element as follows (the actual values shall be approved by the designer):
+### Recommended Mitigation Steps
+
+To rectify that, we need to tweak the `x` and `y` attributes of the `text` element as follows (the actual values shall be approved by the designer):
 
 ```bash
 <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350">
@@ -103,5 +109,3 @@ function generateSVG(uint tokenId_, string memory questId_) public pure returns 
     return string(abi.encodePacked('data:image/svg+xml;base64,', Base64.encode(svg)));
 }
 ```
-
-Regards.
