@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "prestoncodes",
+  "risk": "3",
+  "title": "Users can find themselves with valid receipts that are unable to claim due to lack of funds in the quest contract.",
+  "issueId": 88,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/88"
+}
