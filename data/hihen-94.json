@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "hihen",
+  "risk": "2",
+  "title": "Lack of information in the signed data leads to potential replay attacks on mintReceipt()",
+  "issueId": 94,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/94"
+}
