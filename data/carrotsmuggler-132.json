@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "carrotsmuggler",
+  "risk": "3",
+  "title": "Users can complete quests and claim rewards even after `endTime` has passed, denying earlier users rewards",
+  "issueId": 132,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/132"
+}
