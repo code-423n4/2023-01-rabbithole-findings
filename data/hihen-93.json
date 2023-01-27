@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "hihen",
+  "risk": "2",
+  "title": "The Quest contract lacks a function to refund any token(except the rewardToken)",
+  "issueId": 93,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/93"
+}
