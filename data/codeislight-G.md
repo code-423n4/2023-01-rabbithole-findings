@@ -7,3 +7,7 @@
         uint48 numberMinted;
     }
 ```
+- use contractType enum instead of string memory, to help reduce any ambiguity and save gas on keccak256 and abi.encodePacked. as an example the following enum can be used:
+```
+enum TOKEN_TYPE {ERC20,ERC1155};
+``` 
