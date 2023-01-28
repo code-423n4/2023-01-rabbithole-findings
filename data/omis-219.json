@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "omis",
+  "risk": "2",
+  "title": "withdrawRemainingTokens could leave tokens in the contract",
+  "issueId": 219,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/219"
+}
