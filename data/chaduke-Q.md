@@ -8,8 +8,13 @@ The correction is
 
 ```
 
-QA2. It is advisable to have a zero address check for all the setters such as: ``setMinterAddress()``, ``setQuestFactory()``, ``setReceiptRenderer``, etc. 
-https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L54-L62
+QA2. When admins/owner set important address parameters, it is important to do a zero address check and also 
+``X != address(this)`` check to ensure not losing funding due to mistakes. 
+
+1) https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L71-L73
+2) https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L77-L79
+3) https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L83-L86
+4) https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L65-L67
 
 
 QA3. The owner has overly-centralized control in the QuestFactory contract, including 1) ``changeCreateQuestRole()``, 2) ``setClaimSignerAddress()``, 3) ``setClaimSignerAddress()``, 4) ``setRabbitHoleReceiptContract()``, 5) ``setRewardAllowlistAddress`` 6) ``setRewardAllowlistAddress()``, and 7)  ``changeCreateQuestRole()``
@@ -92,3 +97,10 @@ Mitigation: have similar implementation like the case for ERC20Quest, only allow
 QA9. If a sponsor sends the wrong ERC20/ERC1155 to the quest contract (e.g. due to miscommunication), for example,  instead of sending USDC, the sponsor sends USDT, then they will be locked in the contract forever since there is no way to withdraw arbitrary ERC20/ERC1155 tokens. 
 
 Mitigation: introduce generic ``withdrawERC20(address tokenAddress)`` and ``withdraw1155(address tokenAddress)``so that the host can withdraw arbitrary ERC20/ERC1155 tokens. 
+
+QA10. The mint() function of the RabbitHoleReceipt violates the separation of duty rule. The minter of one quest can mint tokens for another quest.
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L98-L104
+For example, Alice is the minter for quest A, so she has the role of minter, then she can also call mint(to, B) to mint receipts for quest B, as a result, she can claim rewards from quest B that has nothing to do with quest A.
+
+Mitigation: each quest should has its own minter. A minter of quest A should be not allowed to mint receipts for quest B. 
+
