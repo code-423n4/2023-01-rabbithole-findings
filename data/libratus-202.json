@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "libratus",
+  "risk": "2",
+  "title": "Mixing different access controll approaches in QuestFactory may lead to errors",
+  "issueId": 202,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/202"
+}
