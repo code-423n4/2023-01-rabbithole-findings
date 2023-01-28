@@ -189,3 +189,43 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 
 ### Recommended Mitigation Steps
 USE CUSTOM ERRORS RATHER THAN REVERT()/REQUIRE() STRINGS TO SAVE GAS
+
+## [YO GAS-8] Gas savings by moving bool state variable next to an address state variable declaration
+
+### Handle
+yosuke
+
+## Vulnerability details
+### Impact
+A bool in Solidity is internally represented as a unit8 and so required only 8 bits of the 256-bits storage slot. An address variable is 160-bits. So declaring a bool next to an address variable lets Solidity pack them in the same storage slot thereby using one slot instead of two.
+
+For reference, see https://mudit.blog/solidity-gas-optimization-tips/
+
+### Proof of Concept
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L14-L20
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L25-L27
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L44-L46
+
+### Recommended Mitigation Steps
+Move bool state variable declaration next to an address state variable declaration.
+ex)
+before
+```solidity=
+address public immutable rewardToken;
+uint256 public immutable endTime;
+uint256 public immutable startTime;
+uint256 public immutable totalParticipants;
+uint256 public immutable rewardAmountInWeiOrTokenId;
+bool public hasStarted;
+bool public isPaused;
+```
+after
+```solidity=
+bool public hasStarted;
+bool public isPaused;
+address public immutable rewardToken;
+uint256 public immutable endTime;
+uint256 public immutable startTime;
+uint256 public immutable totalParticipants;
+uint256 public immutable rewardAmountInWeiOrTokenId;
+```
