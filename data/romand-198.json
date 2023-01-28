@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "romand",
+  "risk": "2",
+  "title": "Quest completion signatures can be reused due to lack of domain seperator",
+  "issueId": 198,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/198"
+}
