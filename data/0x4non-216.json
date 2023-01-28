@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0x4non",
+  "risk": "2",
+  "title": "A user selling a `rabbitHoleReceipt` can sell the token and frontrun the buyer to `claim` rewards before transfer the `rabbitHoleReceipt`",
+  "issueId": 216,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/216"
+}
