@@ -11,3 +11,4 @@
 ```
 enum TOKEN_TYPE {ERC20,ERC1155};
 ``` 
+- questId variable value doesn't change in Quest contract, advised to be defined as immutable to save on gas.  
