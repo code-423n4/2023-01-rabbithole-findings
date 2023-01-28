@@ -118,3 +118,9 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
  ++questIdCount;
 ```
 Mitigation: don't bother to initialize it to 1 in the constructor, so it will be zero initially. 
+
+QA12.  It is important to declare a uint _gap[50] state variable for the following upgradable implementation contracts so that when they are upgraded with the introduction of new state variables, other inheriting contracts will not be disturbed. 
+
+1)  QuestFactory
+2) RabbitHoleReceipt 
+3) RabbitHoleTickets
