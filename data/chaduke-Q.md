@@ -104,3 +104,17 @@ For example, Alice is the minter for quest A, so she has the role of minter, the
 
 Mitigation: each quest should has its own minter. A minter of quest A should be not allowed to mint receipts for quest B. 
 
+QA11. ``QuestIdCount`` is always the total number of Quests + 1. This is confusing. 
+
+This is because it is initialized to 1 in the constructor: 
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L49
+```
+ questIdCount = 1;
+```
+and it increases by 1 each time a new quest is launched:
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L101
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L132
+```
+ ++questIdCount;
+```
+Mitigation: don't bother to initialize it to 1 in the constructor, so it will be zero initially. 
