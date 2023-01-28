@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "paspe",
+  "risk": "3",
+  "title": "Wrong expression for modifiers in two files and potential unprotected methods with wrong check",
+  "issueId": 228,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/228"
+}
