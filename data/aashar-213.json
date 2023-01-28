@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "aashar",
+  "risk": "2",
+  "title": "The setRoyaltyFee function does not have an upper bound limit, it can be set to any value",
+  "issueId": 213,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/213"
+}
