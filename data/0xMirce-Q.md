@@ -14,3 +14,9 @@ it could be used
         if (startTime_ <= block.timestamp) revert StartTimeInPast();
 ``` 
 because if `endTime` is greater than `startTime` and `startTime` is greater than `block.timestamp`, automatically `endTime` will be greater than `block.timestamp`.
+
+
+
+## TransferOwnership should be two step process
+
+In all contracts it is using the `OwnableUpgradeable` contract. The main problem with that contract is that It’s possible that the `onlyOwner` role mistakenly transfers ownership to the wrong address, resulting in a loss of the `onlyOwner` role. Instead of using the `OwnableUpgradeable` suggestion is using the `Ownable2StepUpgradeable` contract, so when an account with `onlyOwner` role transfer ownership to the other account, the other account (`pendingOwner`) must confirm ownership by calling `acceptOwnership`and then he will become the new owner. In that way, even if the account with `onlyOwner` mistake when calling `transferOwnership` transaction, it is possible to propose again a new pending owner and correct that mistake.
