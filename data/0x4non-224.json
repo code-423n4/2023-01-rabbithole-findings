@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0x4non",
+  "risk": "2",
+  "title": "Unbounded set on `royaltyFee` can break ERC2981 `royaltyInfo`",
+  "issueId": 224,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/224"
+}
