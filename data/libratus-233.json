@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "libratus",
+  "risk": "3",
+  "title": "After ERC1155 quest ends, admin can withdraw rewards that are still meant to be claimed",
+  "issueId": 233,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/233"
+}
