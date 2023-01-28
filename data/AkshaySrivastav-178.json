@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "AkshaySrivastav",
+  "risk": "2",
+  "title": "Inconsistent logic to handle unclaimed funds between `Erc20Quest` and `Erc1155Quest` ",
+  "issueId": 178,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/178"
+}
