@@ -17,9 +17,9 @@ because if `endTime` is greater than `startTime` and `startTime` is greater than
 
 
 
-## TransferOwnership should be two step process
+## TransferOwnership should be two-step process
 
-In all contracts it is using the `OwnableUpgradeable` contract. The main problem with that contract is that It’s possible that the `onlyOwner` role mistakenly transfers ownership to the wrong address, resulting in a loss of the `onlyOwner` role. Instead of using the `OwnableUpgradeable` suggestion is using the `Ownable2StepUpgradeable` contract, so when an account with the `onlyOwner` role transfer ownership to the other account, the other account (`pendingOwner`) must confirm ownership by calling `acceptOwnership`and then he will become the new owner. In that way, even if the account with the `onlyOwner` mistake when calling the `transferOwnership` transaction, it is possible to propose again a new pending owner and correct that mistake.
+In all project contracts, it is using the `OwnableUpgradeable` contract. The main problem with that contract is that It’s possible that the `onlyOwner` role mistakenly transfers ownership to the wrong address, resulting in a loss of the `onlyOwner` role. Instead of using the `OwnableUpgradeable`, my suggestion is to use the `Ownable2StepUpgradeable` contract, so when an account with the `onlyOwner` role transfer ownership to the other account, the other account (`pendingOwner`) must confirm ownership by calling `acceptOwnership` and then he will become the new owner. In that way, even if the account with the `onlyOwner` mistake when calling the `transferOwnership` transaction, it is possible to propose a new pending owner again and correct that mistake.
 
 
 
