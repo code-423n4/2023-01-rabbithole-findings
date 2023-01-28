@@ -1,12 +1,18 @@
 # Incorrect Receipt Text Rendering
 
-[`ReceiptRenderer.sol#L100`](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L100)
+## Lines of Code
+
+[https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L100](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L100)
+
+## Vulnerability Details
+
+### Impact
 
 The receipt text is rendered incorrectly.
 
 ### Proof of Concept
 
-Here is the code of `generateSVG` function:
+Here is the code of `generateSVG` function (link provided in the **Lines of code** section above):
 
 ```solidity
 /// @dev generates the on-chain SVG for an ERC-721 token ID
@@ -42,7 +48,7 @@ RabbitHole Quest Receipt #`tokenId_`
 
 *where the variables `questId_` and `tokenId_` are placeholders for the actual values.*
 
-In order to obtain the final `svg` code generated after packing the params passed to `abi.encodePacked` and afterwards respectively unpacking the output, we can concatenate these params into a single string by removing `'` and `,` characters thus obtaining the output `svg` code:
+In order to obtain a clean `svg` format, the params passed to `abi.encodePacked` can be concatenated into a single string by removing `'` and `,` characters as follows:
 
 ```bash
 <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350">
@@ -55,7 +61,7 @@ In order to obtain the final `svg` code generated after packing the params passe
 
 *where again the variables `questId_` and `tokenId_` are placeholders for the actual values.*
 
-Then, to check how it renders, we can utilize an online SVG viewer like [https://www.svgviewer.dev/](https://www.svgviewer.dev/).
+Then, to check how it actually renders, an online SVG viewer like [https://www.svgviewer.dev/](https://www.svgviewer.dev/) can be utilized.
 
 Here is the respective screenshot:
 
@@ -63,9 +69,15 @@ Here is the respective screenshot:
 
 As can be seen above, the receipt (which is generated on the right hand side), contains two overlapping lines of text.
 
+### Tools Used
+
+Manual review.
+
+Online SVG viewer [https://www.svgviewer.dev/](https://www.svgviewer.dev/).
+
 ### Recommended Mitigation Steps
 
-To rectify that, we need to tweak the `x` and `y` attributes of the `text` element as follows (the actual values shall be approved by the designer):
+To rectify that, the `x` and `y` attributes of the `text` element shall be modified accordingly. See below a sample proposed modification (the actual values shall be advised by the designer / project team):
 
 ```bash
 <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350">
