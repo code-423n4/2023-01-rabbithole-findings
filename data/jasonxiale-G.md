@@ -1,3 +1,122 @@
+# mapping value should be cached rather than re-indexed from storage
+in [QuestFactory.sol#L28](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L28),  within one function __quests__ is used  multiple-times, in this case, __quests__ should be cached to save gas.
+we can use the follow code as poc
+
+
+    // SPDX-License-Identifier: GPL-3.0
+ 
+    pragma solidity ^0.8.15;
+ 
+    contract StorageA {
+        struct A{
+            uint a;
+            uint b;
+            uint c;
+            uint d;
+        }
+ 
+        mapping (string => A) m;
+ 
+        constructor() {
+            A memory a;
+            a.a = 1;
+            a.b = 1;
+            a.c = 1;
+            a.d = 1;
+            m["a"] = a;
+        }
+ 
+        function show(string calldata key) public view returns (uint, uint, uint, uint) {
+            return (m[key].a, m[key].b, m[key].c, m[key].d);
+        }
+ 
+        function setV(string calldata key, uint v) public {
+            m[key].a = v;
+            m[key].b = v;
+            m[key].c = v;
+            m[key].d = v;
+        }
+    }
+ 
+    contract StorageB {
+        struct A{
+            uint a;
+            uint b;
+            uint c;
+            uint d;
+        }
+ 
+        mapping (string => A) m;
+ 
+        constructor() {
+            A memory a;
+            a.a = 1;
+            a.b = 1;
+            a.c = 1;
+            a.d = 1;
+            m["a"] = a;
+        }
+ 
+        function show(string calldata key) public view returns (uint, uint, uint, uint) {
+            A memory a = m[key];
+            return (a.a, a.b, a.c, a.d);
+        }
+ 
+        function setV(string calldata key, uint v) public {
+            A storage a = m[key];
+ 
+            a.a = v;
+            a.b = v;
+            a.c = v;
+            a.d = v;
+        }
+    }
+ 
+ 
+    contract StorageC {
+        struct A{
+            uint a;
+            uint b;
+            uint c;
+            uint d;
+        }
+    
+        mapping (string => A) m;
+    
+        constructor() {
+            A memory a;
+            a.a = 1;
+            a.b = 1;
+            a.c = 1;
+            a.d = 1;
+            m["a"] = a;
+        }
+    
+        function show(string calldata key) public view returns (uint, uint, uint, uint) {
+            A storage a = m[key];
+            return (a.a, a.b, a.c, a.d);
+        }
+    
+        function setV(string calldata key, uint v) public {
+            A storage a = m[key];
+    
+            a.a = v;
+            a.b = v;
+            a.c = v;
+            a.d = v;
+        }
+    }
+
+as we can see, contract StorageC can save more gas
+
+
+# timestampForTokenId is never read or used, so remove the related code
+timestampForTokenId defined in [RabbitHoleReceipt.sol#L34](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L34) is only been set in [RabbitHoleReceipt.sol#L102](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L102), but never been read, so maybe it's useless.
+
+# stack variable used as a cheaper cache for a state variable is only used once
+If the variable is only accessed once, it’s cheaper to use the state variable directly that one time, and save the 3 gas the extra stack assignment would spend.
+[RabbitHoleReceipt.sol#L164](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L164)
+
 # Internal functions only called once can be inlined to save gas
 [QuestFactory.sol#L152](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L152)
 
