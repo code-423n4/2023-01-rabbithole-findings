@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "omis",
+  "risk": "3",
+  "title": "User can claim the same receipt across different chains",
+  "issueId": 211,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/211"
+}
