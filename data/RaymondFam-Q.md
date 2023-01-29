@@ -161,3 +161,50 @@ For instance, the `a = false` instance below may be refactored as follows:
 -        isPaused = false;
 +        delete isPaused;
 ```
+## Typo errors
+[File: QuestFactory.sol#L176](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L176)
+
+```diff
+-    /// @dev set or remave a contract address to be used as a reward
++    /// @dev set or remove a contract address to be used as a reward
+```
+## `questIdCount` should be initialized to `0`
+`questIdCount` in QuestFactory.sol is initialized to 1 when there is no quest created. Although there is no accounting mess up entailed, it should be initialized to `0` to more accurately reflect the number of quests created when its public getter is accessed.
+
+Consider removing it from `initialize()` since not assigning anything to `questIdCount` is as good as keeping its default value, i.e. `0`:
+
+[File: QuestFactory.sol#L37-L50](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L37-L50)
+
+```diff
+    function initialize(
+        address claimSignerAddress_,
+        address rabbitholeReceiptContract_,
+        address protocolFeeRecipient_
+    ) public initializer {
+        __Ownable_init();
+        __AccessControl_init();
+        grantDefaultAdminAndCreateQuestRole(msg.sender);
+        claimSignerAddress = claimSignerAddress_;
+        rabbitholeReceiptContract = RabbitHoleReceipt(rabbitholeReceiptContract_);
+        setProtocolFeeRecipient(protocolFeeRecipient_);
+        setQuestFee(2_000);
+-        questIdCount = 1;
+    }
+```
+## Parameterized custom errors
+Custom errors can be parameterized to better reflect their respective error messages if need be.
+
+For instance, the custom error instance below may be refactored as follows:
+
+[File: IQuestFactory.sol#L5](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuestFactory.sol#L5)
+
+```diff
+-    error QuestIdUsed();
++    error QuestIdUsed(string memory questId_);
+```
+[File: QuestFactory.sol#L70](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L70)
+
+```diff
+-        if (quests[questId_].questAddress != address(0)) revert QuestIdUsed();
++        if (quests[questId_].questAddress != address(0)) revert QuestIdUsed(questId_);
+```
