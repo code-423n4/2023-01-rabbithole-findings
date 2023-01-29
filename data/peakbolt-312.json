@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "peakbolt",
+  "risk": "3",
+  "title": "withdrawFee() can be called repeatedly by anyone to drain unclaimed rewards",
+  "issueId": 312,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/312"
+}
