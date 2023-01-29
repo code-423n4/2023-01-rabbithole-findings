@@ -12,3 +12,12 @@
 enum TOKEN_TYPE {ERC20,ERC1155};
 ``` 
 - questId variable value doesn't change in Quest contract, advised to be defined as immutable to save on gas.  
+- in QuestFactory.mintReceipt, the following check statement:
+```
+        if (quests[questId_].numberMinted + 1 > quests[questId_].totalParticipants) revert OverMaxAllowedToMint();
+```
+equates to:
+```
+        if (quests[questId_].numberMinted == quests[questId_].totalParticipants) revert OverMaxAllowedToMint();
+```
+which would save on 3 gas on extra add opcode.
