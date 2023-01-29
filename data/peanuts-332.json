@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "peanuts",
+  "risk": "2",
+  "title": "Quest owner can grief the protocol by not paying their fees in Erc20Quest#withdrawFee()",
+  "issueId": 332,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/332"
+}
