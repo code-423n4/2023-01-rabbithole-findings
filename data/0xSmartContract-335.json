@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xSmartContract",
+  "risk": "2",
+  "title": "For ERC1155 in `RabbitHoleTicket` ; When using _mint, `RabbitHoleReceipt` also uses _safeMint for ERC721",
+  "issueId": 335,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/335"
+}
