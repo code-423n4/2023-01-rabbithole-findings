@@ -14,8 +14,9 @@
 |[L-10]| Update codes to avoid Compile Errors| 6 |
 |[L-11]| Front running attacks by the `onlyOwner` | 1 |
 |[L-12]| Treatment of ERC-2981 for non-existent token royalty amount | 1 |
+|[L-13]| Use re-entrancy guard in `RabbitHoleReceipt.mint()` function
 
-Total 12 issues
+Total 13 issues
 
 
 ### Non-Critical Issues List
@@ -451,6 +452,71 @@ contracts/RabbitHoleTickets.sol:
 
 
 ```
+
+
+### [L-13] Use re-entrancy guard in `RabbitHoleReceipt.mint()` function
+
+Using the safemint pattern and following the check-effects-interaction pattern can help prevent some common security vulnerabilities in ERC721 contracts. Since the check-effects-interaction pattern is implemented in the `safeMint` function of the project, there does not appear to be a serious security problem.
+
+However, it is still a good practice to apply a reentrancy guard as an additional measure of protection against potential reentrancy attacks.
+
+
+```solidity
+
+contracts/RabbitHoleReceipt.sol:
+   97      /// @param questId_ the quest id
+   98:     function mint(address to_, string memory questId_) public onlyMinter {
+   99:         _tokenIds.increment();
+  100:         uint newTokenID = _tokenIds.current();
+  101:         questIdForTokenId[newTokenID] = questId_;
+  102:         timestampForTokenId[newTokenID] = block.timestamp;
+  103:         _safeMint(to_, newTokenID);
+  104:     }
+
+```
+
+
+
+### Tools Used
+Manuel Code Review
+
+
+
+### Recommended Mitigation Steps
+Use Openzeppelin or Solmate Re-Entrancy pattern
+Here is a example of a re-entrancy guard
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+contract ReEntrancyGuard {
+    bool internal locked;
+
+    modifier noReentrant() {
+        require(!locked, "No re-entrancy");
+        locked = true;
+        _;
+        locked = false;
+    }
+}
+```
+
+```diff
+
+contracts/RabbitHoleReceipt.sol:
+   97      /// @param questId_ the quest id
+-  98:     function mint(address to_, string memory questId_) public onlyMinter {
++  98:     function mint(address to_, string memory questId_) public noReentrant onlyMinter {
+   99:         _tokenIds.increment();
+  100:         uint newTokenID = _tokenIds.current();
+  101:         questIdForTokenId[newTokenID] = questId_;
+  102:         timestampForTokenId[newTokenID] = block.timestamp;
+  103:         _safeMint(to_, newTokenID);
+  104:     }
+
+```
+
 
 
 ### [N-01] Add parameter to Event-Emit for critical function
