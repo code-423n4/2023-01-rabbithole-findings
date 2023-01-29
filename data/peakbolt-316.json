@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "peakbolt",
+  "risk": "2",
+  "title": "Minting new RabbitHoleReceipt after withdrawRemainingTokens() is called will result in insufficent balance for users who have not claimed their rewards",
+  "issueId": 316,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/316"
+}
