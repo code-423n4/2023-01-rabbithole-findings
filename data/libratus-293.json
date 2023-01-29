@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "libratus",
+  "risk": "2",
+  "title": "Minting signature is missing chain id making the protocol vulnerable to replay attack",
+  "issueId": 293,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/293"
+}
