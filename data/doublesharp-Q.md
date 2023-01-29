@@ -24,4 +24,4 @@ abstract contract Quest is Ownable, IQuest {
 
 # QuestFactory should not have an constructor marked with the `initializer` modifier
 
-The QuestFactory constructor with `initializer` modifier should be removed as it is not recommend for upgradable contracts.
+The QuestFactory constructor with `initializer` modifier should be removed as it is not recommended for upgradable contracts.
