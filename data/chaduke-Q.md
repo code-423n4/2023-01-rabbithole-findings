@@ -1,4 +1,4 @@
-QA1. The NatSpec here is wrong
+QA1. The NatSpec here is wrong, this is not ERC165, it is about ERC2981
 ```
 @dev See {IERC165-royaltyInfo}
 ```
@@ -47,10 +47,16 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 
 Analysis: This is because the signature only signs for ``(winnerAddress, questId)``, so the signature can be reused for another contract and another blockchain to mint free receipts. 
 
+For example, if a quest was very successful on Ethererum and then it is  deployed on a new blockchain Polygon,
+one can reuse the signature signed on the Ethereum to get free receipt on Polygon by calling ``mintReceipt`` with the same signature. 
+
 Mitigation: To prevent signature replay attack, include nonce, contract address and blockchain ID in the hash as well. 
 
-QA6. ``royaltyFee`` should never be greater than 100% of the salePrice (represented as 10_000). 
+QA6. ``royaltyFee`` should never be greater than 100% of the salePrice (represented as 10_000). Otherwise, the seller gets nothing from a sale or causing the selling to fail.
+
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66-L69
+
+
 
 The mitigation is to add such a check:
 ```
@@ -62,7 +68,7 @@ The mitigation is to add such a check:
     }
 ```
 
-QA7. If a sponsor sends the wrong ERC20/ERC1155 to the quest contract (e.g. due to miscommunication), for example,  instead of sending USDC, the sponsor sends USDT, then they will be locked in the contract forever since there is no way to withdraw arbitrary ERC20/ERC1155 tokens. 
+QA7. If a sponsor sends the wrong ERC20/ERC1155 to the quest contract (e.g. due to miscommunication), for example,  instead of sending USDC, the sponsor sends USDT as reward tokens, then they will be locked in the contract forever since there is no way to withdraw arbitrary ERC20/ERC1155 tokens. 
 
 Mitigation: introduce generic ``withdrawERC20(address tokenAddress)`` and ``withdraw1155(address tokenAddress)``so that the host can withdraw arbitrary ERC20/ERC1155 tokens. 
 
