@@ -62,3 +62,24 @@ Manual Analysis
 
 Old version of Solidity is used , newer version can be used (0.8.17)
 
+# 3: USE CONSTANTS FOR NUMBERS
+
+Vulnerability details
+
+## Impact
+
+In the Erc1155Quest.sol contract, numbers like 0x00 are used more than once. It is quite easy to make a mistake somewhere, also when comparing values.
+
+## Proof of Concept
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L42 
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L61 
+
+## Tools Used
+
+Manual Analysis
+
+## Recommended Mitigation Steps
+
+Recommend defining constants for the numbers and values used throughout the code.
