@@ -105,6 +105,7 @@ Lines in source code are typically limited to 80 characters, but it’s reasonab
 Here are some of the instances entailed:
 
 [File: IQuestFactory.sol#L16](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuestFactory.sol#L16)
+[File: Erc20Quest.sol#L56-L57](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L56-L57)
 
 ## Inadequate NatSpec
 Solidity contracts can use a special form of comments, i.e., the Ethereum Natural Language Specification Format (NatSpec) to provide rich documentation for functions, return variables and more. Please visit the following link for further details:
@@ -124,4 +125,39 @@ Here are some of the instances entailed:
 
 ```solidity
 // TODO clean this whole thing up
+```
+## Camel casing input parameter names
+State variable names should be conventionally camel cased where possible.
+
+Here are some of the instances entailed:
+
+[File: RabbitHoleReceipt.sol#L35-L36](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L35-L36)
+
+```solidity
+    ReceiptRenderer public ReceiptRendererContract;
+    IQuestFactory public QuestFactoryContract;
+```
+## Missing boundary check on `royaltyFee`
+A sanity boundary check should be implemented on `royaltyFee` when calling `setRoyaltyFee()` just as it has been done so in `setQuestFee()`.
+
+[File: RabbitHoleReceipt.sol#L90-L93](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90-L93)
+
+```solidity
+    function setRoyaltyFee(uint256 royaltyFee_) public onlyOwner {
+        royaltyFee = royaltyFee_;
+        emit RoyaltyFeeSet(royaltyFee_);
+    }
+```
+## Use `delete` to clear variables
+`delete a` assigns the initial value for the type to `a`. i.e. for integers it is equivalent to `a = 0`, but it can also be used on arrays, where it assigns a dynamic array of length zero or a static array of the same length with all elements reset. For structs, it assigns a struct with all members reset. Similarly, it can also be used to set an address to zero address or a boolean to false. It has no effect on whole mappings though (as the keys of mappings may be arbitrary and are generally unknown). However, individual keys and what they map to can be deleted: If `a` is a mapping, then `delete a[x]` will delete the value stored at x.
+
+The delete key better conveys the intention and is also more idiomatic.
+
+For instance, the `a = false` instance below may be refactored as follows:
+
+[File: Quest.sol#L64](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L64)
+
+```diff
+-        isPaused = false;
++        delete isPaused;
 ```
