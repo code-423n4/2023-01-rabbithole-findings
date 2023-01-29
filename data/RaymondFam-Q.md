@@ -1,0 +1,93 @@
+## No storage gap for upgradeable contracts
+Consider adding a storage gap at the end of an upgradeable contract, just in case it would entail some child contracts in the future. This would ensure no shifting down of storage in the inheritance chain.
+
+```diff
++ uint256[50] private __gap;
+```
+Here is the contract instance entailed:
+
+[File: QuestFactory.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol)
+
+## `uint256` over `uint`
+Across the codebase, there are numerous instances of uint, as opposed to uint256. In favor of explicitness, consider replacing all instances of `uint` with `uint256`.
+
+Here are some of the instances entailed:
+
+[File: QuestFactory.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol)
+
+```solidity
+22:        uint totalParticipants;
+23:        uint numberMinted;
+
+31:    uint public questFee;
+32:    uint public questIdCount;
+
+193:    function getNumberMinted(string memory questId_) external view returns (uint) {
+
+199:    function questInfo(string memory questId_) external view returns (address, uint, uint) {
+```
+## Unspecific compiler version pragma
+For some source-units the compiler version pragma is very unspecific, i.e. ^0.8.15. While this often makes sense for libraries to allow them to be included with multiple different versions of an application, it may be a security risk for the actual application implementation itself. A known vulnerable compiler version may accidentally be selected or security tools might fall-back to an older compiler version ending up actually checking a different EVM compilation that is ultimately deployed on the blockchain.
+
+Avoid floating pragmas where possible. It is highly recommend pinning a concrete compiler version (latest without security issues) in at least the top-level “deployed” contracts to make it unambiguous which compiler version is being used. Rule of thumb: a flattened source-unit should have at least one non-floating concrete solidity compiler version pragma.
+
+## Non-compliant contract layout with Solidity's Style Guide
+According to Solidity's Style Guide below:
+
+https://docs.soliditylang.org/en/v0.8.17/style-guide.html
+
+In order to help readers identify which functions they can call, and find the constructor and fallback definitions more easily, functions should be grouped according to their visibility and ordered in the following manner:
+
+constructor, receive function (if exists), fallback function (if exists), external, public, internal, private
+
+And, within a grouping, place the `view` and `pure` functions last.
+
+Additionally, inside each contract, library or interface, use the following order:
+
+type declarations, state variables, events, modifiers, functions
+
+Consider adhering to the above guidelines for all contract instances entailed.
+
+## Use a more recent version of solidity
+The protocol adopts version 0.8.15 on writing contracts. For better security, it is best practice to use the latest Solidity version, 0.8.17.
+
+Security fix list in the versions can be found in the link below:
+
+https://github.com/ethereum/solidity/blob/develop/Changelog.md
+
+## Add a Constructor Initializer
+As per Openzeppelin's recommendation:
+
+https://forum.openzeppelin.com/t/uupsupgradeable-vulnerability-post-mortem/15680/6
+
+The guidelines are now to prevent front-running of initialize() on an implementation contract, by adding an empty constructor with the initializer modifier. Hence, the implementation contract gets initialized atomically upon deployment.
+
+This feature is readily incorporated in the Solidity Wizard since the UUPS vulnerability discovery. You would just need to check UPGRADEABILITY to have the following constructor instance below more equipped as follows:
+
+[File: QuestFactory.sol#L34-L35](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L34-L35)
+
+```diff
+    /// @custom:oz-upgrades-unsafe-allow constructor
+-    constructor() initializer {}
++    constructor() {
++        _disableInitializers();
++    }
+```
+## Lack of events for critical operations
+Critical operations not triggering events will make it difficult to review the correct behavior of the deployed contracts. Users and blockchain monitoring systems will not be able to detect suspicious behaviors at ease without events. Consider adding events where appropriate for all critical operations for better support of off-chain logging API.
+
+Here are the setter instances with missing events entailed:
+
+[File: QuestFactory.sol#L157-L189](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L157-L189)
+
+```solidity
+159:    function setClaimSignerAddress(address claimSignerAddress_) public onlyOwner {
+
+165:    function setProtocolFeeRecipient(address protocolFeeRecipient_) public onlyOwner {
+
+172:    function setRabbitHoleReceiptContract(address rabbitholeReceiptContract_) public onlyOwner {
+
+179:    function setRewardAllowlistAddress(address rewardAddress_, bool allowed_) public onlyOwner {
+
+186:    function setQuestFee(uint256 questFee_) public onlyOwner {
+```
