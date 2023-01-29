@@ -28,3 +28,15 @@ To save 2 storage slot, while still allow 2^48 participant and reward to be mint
 ## Deploy with proxy
 
 Quest contracts are deployed directly from the factory, which can be expensive. Consider deploying proxy to a shared Quest implementation to reduce deployment gas cost. Although this will increase each call to the contract slightly.
+
+## Redundant hash parameter
+
+hash_ is redundant since it can be calculated with other input
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L219-L222
+```
+    function mintReceipt(string memory questId_, bytes32 hash_, bytes memory signature_) public {
+        if (quests[questId_].numberMinted + 1 > quests[questId_].totalParticipants) revert OverMaxAllowedToMint();
+        if (quests[questId_].addressMinted[msg.sender] == true) revert AddressAlreadyMinted();
+        if (keccak256(abi.encodePacked(msg.sender, questId_)) != hash_) revert InvalidHash();
+```
