@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xMirce",
+  "risk": "2",
+  "title": "`ERC1155Quest` contract owner could withdraw all users rewards when the quest has ended if users don't claim a reward before the end",
+  "issueId": 298,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/298"
+}
