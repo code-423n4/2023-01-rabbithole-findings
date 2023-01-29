@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "peanuts",
+  "risk": "2",
+  "title": "Quest Deployer can be DoS if certain parameters are not set properly",
+  "issueId": 346,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/346"
+}
