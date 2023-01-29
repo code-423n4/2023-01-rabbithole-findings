@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "ElKu",
+  "risk": "2",
+  "title": "Quest owner of Erc1155Quest contract can withdraw all reward tokens after the Quest ends, resulting in loss to unclaimed users",
+  "issueId": 275,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/275"
+}
