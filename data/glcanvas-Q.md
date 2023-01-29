@@ -81,6 +81,14 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 
 ----
 
+## [N-13] misleading name ```onlyAdminWithdrawAfterEnd```
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L76
+
+this modifier should be named as ```withdrawAfterEnd```
+
+----
+
 ## [L-1] Bad ```QuestFactory``` architecture
 
 Please, create two different functions like: ```createErc20Quest``` and ```createErc1155Quest```, it
