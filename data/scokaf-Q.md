@@ -38,3 +38,27 @@ Manual Analysis
 ### Recommended Mitigation Steps
 
 Remove ^ in “pragma solidity ^0.8.15” and change it to “pragma solidity 0.8.15” to be consistent with the rest of the contracts.
+
+
+# 2: USE A MORE RECENT VERSION OF SOLIDITY
+
+Vulnerability details
+
+## Context:
+
+All contracts
+
+## Description:
+
+For security, it is best practice to use the latest Solidity version.
+
+For the security fix list in the versions; see https://github.com/ethereum/solidity/blob/develop/Changelog.md
+
+## Tools Used
+
+Manual Analysis
+
+### Recommended Mitigation Steps
+
+Old version of Solidity is used , newer version can be used (0.8.17)
+
