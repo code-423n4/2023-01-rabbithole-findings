@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "martin",
+  "risk": "2",
+  "title": "[M-01] Reentrancy attack vector",
+  "issueId": 356,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/356"
+}
