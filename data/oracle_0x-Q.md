@@ -20,20 +20,5 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 Manual Review
 
 ### Recommended Mitigation Steps
-
-Handle
-JMukesh
-
-Vulnerability details
-Impact
-constructor of RCorderbook.sol lacks zero address validation , since parameter of costructor are used initialize state variable which are used in other function of the contract , error in these state variable can lead to redeployment of contract
-
-Proof of Concept
-https://github.com/code-423n4/2021-06-realitycards/blob/main/contracts/RCOrderbook.sol#L106
-
-Tools Used
-manual review
-
-Recommended Mitigation Steps
 Add a check for zero address
 
