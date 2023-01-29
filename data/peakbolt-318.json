@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "peakbolt",
+  "risk": "2",
+  "title": "Erc1155Quest.withdrawRemainingTokens() will unexpectedly withdraw unclaimed rewards of participants",
+  "issueId": 318,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/318"
+}
