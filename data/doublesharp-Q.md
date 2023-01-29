@@ -21,3 +21,7 @@ abstract contract Quest is Ownable, IQuest {
     function _transferRewards(uint256 amount_) internal virtual;
 }
 ```
+
+# QuestFactory should not have an constructor marked with the `initializer` modifier
+
+The QuestFactory constructor with `initializer` modifier should be removed as it is not recommend for upgradable contracts.
