@@ -4,9 +4,10 @@ Consider adding a storage gap at the end of an upgradeable contract, just in cas
 ```diff
 + uint256[50] private __gap;
 ```
-Here is the contract instance entailed:
+Here are the contract instances entailed:
 
 [File: QuestFactory.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol)
+[File: RabbitHoleReceipt.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol)
 
 ## `uint256` over `uint`
 Across the codebase, there are numerous instances of uint, as opposed to uint256. In favor of explicitness, consider replacing all instances of `uint` with `uint256`.
@@ -62,7 +63,7 @@ https://forum.openzeppelin.com/t/uupsupgradeable-vulnerability-post-mortem/15680
 
 The guidelines are now to prevent front-running of initialize() on an implementation contract, by adding an empty constructor with the initializer modifier. Hence, the implementation contract gets initialized atomically upon deployment.
 
-This feature is readily incorporated in the Solidity Wizard since the UUPS vulnerability discovery. You would just need to check UPGRADEABILITY to have the following constructor instance below more equipped as follows:
+This feature is readily incorporated in the Solidity Wizard since the UUPS vulnerability discovery. You would just need to check UPGRADEABILITY to have the following constructor instance below more equipped (just like it has been done so on [RabbitHoleReceipt.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L38-L41)) as follows:
 
 [File: QuestFactory.sol#L34-L35](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L34-L35)
 
@@ -90,4 +91,37 @@ Here are the setter instances with missing events entailed:
 179:    function setRewardAllowlistAddress(address rewardAddress_, bool allowed_) public onlyOwner {
 
 186:    function setQuestFee(uint256 questFee_) public onlyOwner {
+```
+## Ownership can be renounced
+Inherited Openzeppelin’s OwnableUpgradeable.sol implements `renounceOwnership()`. This can represent a certain risk if the ownership is renounced for any other reason than by design. Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
+
+Here is the contract instance entailed:
+
+[File: QuestFactory.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol)
+
+## Lines too long
+Lines in source code are typically limited to 80 characters, but it’s reasonable to stretch beyond this limit when need be as monitor screens theses days are comparatively larger. Considering the files will most likely reside in GitHub that will have a scroll bar automatically kick in when the length is over 164 characters, all code lines and comments should be split when/before hitting this length. Keep line width to max 120 characters for better readability where possible.
+
+Here are some of the instances entailed:
+
+[File: IQuestFactory.sol#L16](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuestFactory.sol#L16)
+
+## Inadequate NatSpec
+Solidity contracts can use a special form of comments, i.e., the Ethereum Natural Language Specification Format (NatSpec) to provide rich documentation for functions, return variables and more. Please visit the following link for further details:
+
+https://docs.soliditylang.org/en/v0.8.16/natspec-format.html
+
+For instance, it will be of added values to the users and developers if:
+
+- at least a minimalist NatSpec is provided on [IQuestFactory.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuestFactory.sol)
+
+## Open TODOs
+Open TODOs can point to architecture or programming issues that still need to be resolved. Consider resolving them before deploying.
+
+Here are some of the instances entailed:
+
+[File: IQuest.sol#L4](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuest.sol#L4)
+
+```solidity
+// TODO clean this whole thing up
 ```
