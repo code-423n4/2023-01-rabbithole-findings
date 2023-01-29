@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "RaymondFam",
+  "risk": "3",
+  "title": "Missing critical revert in `onlyMinter()` modifier",
+  "issueId": 254,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/254"
+}
