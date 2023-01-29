@@ -75,6 +75,12 @@ You may use EIP-55: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md#
 
 ----
 
+## [N-12] Typo `remave` to `remove`
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L176
+
+----
+
 ## [L-1] Bad ```QuestFactory``` architecture
 
 Please, create two different functions like: ```createErc20Quest``` and ```createErc1155Quest```, it
@@ -91,6 +97,15 @@ create in ```Quest``` mark ```getRewardAmount()``` as abstract. Then for ```Erc1
 variable ```rewardTokenId```. Then for ```Erc20Quest``` create ```rewardsInWei``` variable and use
 them instead of misleading ```rewardAmountInWeiOrTokenId```.
 
+----
+
 ## [L-3] Not enough Logs
 
 Please add events for all functions which change state. For example: ```setRabbitHoleReceiptContract```, ```setProtocolFeeRecipient``` and so on.  
+
+----
+
+## [L-4] Add possibility to iterates over created quests in ```QuestFactory``` 
+
+----
+
