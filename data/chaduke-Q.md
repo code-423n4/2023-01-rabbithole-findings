@@ -17,17 +17,18 @@ QA2. When admins/owner set important address parameters, it is important to do a
 4) https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L65-L67
 
 
-QA3. The owner has overly-centralized control in the QuestFactory contract, including 1) ``changeCreateQuestRole()``, 2) ``setClaimSignerAddress()``, 3) ``setClaimSignerAddress()``, 4) ``setRabbitHoleReceiptContract()``, 5) ``setRewardAllowlistAddress`` 6) ``setRewardAllowlistAddress()``, and 7)  ``changeCreateQuestRole()``
+QA3. The ``withdrawFee()`` has the risk of sending protocol fee to a dead address: 
 
-A compromised/malicious owner can lead to:
-1) Set an accomplice's address as the ``setClaimSignerAddress``, so that the accomplice can sign many receipts for free. 
+https://github.com/rabbitholegg/quest-protocol/blob/9ef32907788dde6c42990ee5dde8f53caeaba474/contracts/Erc20Quest.sol#L102-L104
 
-2) In charge of all the ERC1155Quests, since the owner is the owner of all ERC1155Quests and steal reward tokens from any ERC1155Quest by calling ``withdrawRemainingTokens(to)``.
+The losing of fund can happen in the following way:
+1) A dead address is set as the protocol recipient by the owner of ``QuestFactory`` by mistake or by a compromised owner on purpose. 
 
-3) Enable the introduction of malicious ERC20/ERC1155  reward tokens by calling ``setRewardAllowlistAddress()``
+2)  The malicious user calls ``withdrawFee()`` and then protocol fee is sent to the dead address. 
 
+3) Nobody can retrieve the protocol fee from the dead address. 
 
-Mitigation: A balance-and-check should be introduced: restrict the power of the owner, assign some privileges to other roles/admins. 
+Mitigation: add a modifier so that only the protocol recipient can call  ``withdrawFee()``.  In this way, no fund will be sent to a dead address. 
 
 QA4. 
 The following modifier name is not consistent with its implementation logic. Better change it to ``onlyAfterQuestEnd()``.  
