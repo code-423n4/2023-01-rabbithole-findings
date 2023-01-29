@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "oracle_0x",
+  "risk": "2",
+  "title": "Lack of royalty fee upper limit",
+  "issueId": 303,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/303"
+}
