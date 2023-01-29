@@ -25,10 +25,17 @@ which would save on 3 gas on extra add opcode.
 - no need to double check for boolean value, it is sufficient by its own, and it would save 24 gas:
 ```
         if (rewardAllowlist[rewardTokenAddress_] == false) revert RewardNotAllowed();
+
         if (quests[questId_].addressMinted[msg.sender] == true) revert AddressAlreadyMinted();
+
+        return claimedList[tokenId_] == true;
+
 ```
 equates to:
 ```
         if (!rewardAllowlist[rewardTokenAddress_]) revert RewardNotAllowed();
+
         if (quests[questId_].addressMinted[msg.sender]) revert AddressAlreadyMinted();
+
+        return claimedList[tokenId_];
 ```
