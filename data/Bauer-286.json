@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Bauer",
+  "risk": "2",
+  "title": "Funcation call withdrawfee() can be called by anyone and will result in the user not being able to cliam",
+  "issueId": 286,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/286"
+}
