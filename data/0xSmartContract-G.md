@@ -21,8 +21,9 @@
 | [G-18] |The solady Library's Ownable contract is significantly gas-optimized, which can be used |21|
 | [G-19] |Use `Solmate SafeTransferLib ` contracts||
 | [G-20] |Project file uses ``Transparent Proxy`` model but ``UUPS`` model is cheaper ||
+| [G-21] |Use Minimalist and gas efficient standard ERC1155 implementation ||
 
-Total 20 issues
+Total 21 issues
 
 ### [G-01] Remove the `initializer` modifier (80k  Gas)
 
@@ -776,3 +777,12 @@ https://github.com/transmissions11/solmate/blob/main/src/utils/SafeTransferLib.s
 UUPS proxies are a lot simpler than Transparent, and they only have the logic for delegating the call. This makes them much cheaper to deploy, and each all has half the overhead (just a single SLOAD).
 
 Reference: https://twitter.com/smpalladino/status/1389939166109212675?s=20&t=Nd7ssD9sC_BNTtQF8lnxNg
+
+### [G-21] Use Minimalist and gas efficient standard ERC1155 implementation
+
+
+I recommend using the minimalist and gas-efficient standard ERC1155 implementation.
+
+Reference: https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC1155.sol
+
+
