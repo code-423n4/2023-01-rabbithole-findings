@@ -24,3 +24,7 @@ can be packed into
 ```
 
 To save 2 storage slot, while still allow 2^48 participant and reward to be minted which should be reasonably enough.
+
+## Deploy with proxy
+
+Quest contracts are deployed directly from the factory, which can be expensive. Consider deploying proxy to a shared Quest implementation to reduce deployment gas cost. Although this will increase each call to the contract slightly.
