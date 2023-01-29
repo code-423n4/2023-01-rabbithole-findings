@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "peanuts",
+  "risk": "2",
+  "title": "Erc20Quest#withdrawRemainingTokens() may count remaining tokens incorrectly if withdrawFee() is called first.",
+  "issueId": 328,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/328"
+}
