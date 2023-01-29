@@ -29,6 +29,10 @@ I suggest to use the functions the library of AccessControl provides directly, i
 Link: https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L227-L228
 I suggest to emit the event after the mint function is called.
 
+## Every contract
+
+This is something that happens in every contract:
+From the article Security Pitfalls And Best practices 101 from Secureum: Unlocked pragma: Contracts should be deployed using the same compiler version/flags with which they have been tested. Locking the pragma (for e.g. by not using ^ in pragma solidity 0.5.10) ensures that contracts do not accidentally get deployed using an older compiler version with unfixed bugs. 
 
 
 
