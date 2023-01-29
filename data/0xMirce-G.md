@@ -10,3 +10,9 @@ I suggest removing the `onlyOwner` modifier from https://github.com/rabbitholegg
 ##  Optimize ` + 1 > ` with ` >= `
 
 At line https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L220 there is if check `if (quests[questId_].numberMinted + 1 > quests[questId_].totalParticipants) revert OverMaxAllowedToMint();` which could be optimize with `(quests[questId_].numberMinted >= quests[questId_].totalParticipants) revert OverMaxAllowedToMint(); `. In that way, it will be one operation (add operation) less regarding the original code.
+
+
+
+##  Not needed to set `isPaused = false;` because `isPaused` is by default false
+
+At line https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L51 it is not needed `isPaused = false;` because by default bool storage variables are set to `false`, and on the other side, it is not possible to change that variable to `true` before the quest starts. So, I suggest removing that line.
