@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xmrhoodie",
+  "risk": "3",
+  "title": "Withdraw fee function can be used to empty Erc20Quest funds needed to claim after endTime",
+  "issueId": 311,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/311"
+}
