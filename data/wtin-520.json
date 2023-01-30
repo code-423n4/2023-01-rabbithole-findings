@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "wtin",
+  "risk": "3",
+  "title": "Loss of precision resulting in 0 fee sent by Erc20Quest.withdrawFee()",
+  "issueId": 520,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/520"
+}
