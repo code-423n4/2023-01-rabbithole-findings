@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "wait",
+  "risk": "3",
+  "title": "The QuestFactory.sol#mintReceipt is vulnerable to replay attacks",
+  "issueId": 463,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/463"
+}
