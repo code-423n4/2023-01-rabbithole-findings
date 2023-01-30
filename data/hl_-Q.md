@@ -70,7 +70,7 @@ Functions should be grouped according to their visibility and ordered:
     internal
     private
 
-For example (public comes after internal here where is should be the other way round): 
+For example (public comes after internal here where it should be the other way round): 
 
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L58-L87
 
