@@ -115,6 +115,7 @@ https://docs.soliditylang.org/en/v0.8.16/natspec-format.html
 For instance, it will be of added values to the users and developers if:
 
 - at least a minimalist NatSpec is provided on [IQuestFactory.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuestFactory.sol)
+- @return is included in the function NatSpec of [`getOwnedTokenIdsOfQuest()`](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L106-L112)
 
 ## Open TODOs
 Open TODOs can point to architecture or programming issues that still need to be resolved. Consider resolving them before deploying.
@@ -207,4 +208,15 @@ For instance, the custom error instance below may be refactored as follows:
 ```diff
 -        if (quests[questId_].questAddress != address(0)) revert QuestIdUsed();
 +        if (quests[questId_].questAddress != address(0)) revert QuestIdUsed(questId_);
+```
+## Boundary check 
+`questFee`, an immutable variable in Erc20Quest.sol, should have a boundary check just as it has been adopted in [`setQuestFee()`](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L187) of QuestFactory.sol.
+
+[File: Erc20Quest.sol#L38](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L38)
+
+```diff
++    error QuestFeeTooHigh();
+
++        if (questFee_ > 10_000) revert QuestFeeTooHigh();
+        questFee = questFee_;
 ```
