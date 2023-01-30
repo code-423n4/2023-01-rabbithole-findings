@@ -253,3 +253,7 @@ Consider having the if block refactored by adding a threshold of 7 days or any o
 -        if (endTime_ <= startTime_) revert EndTimeLessThanOrEqualToStartTime();
 +        if (endTime_ <= startTime_ + 7 days) revert EndTimeLessThanOrEqualToStartTime(); 
 ```
+## Erc1155Quest unincentivized to promote on-chain actions
+Devoid of `protocolFee` and its associated protocol rewards, Erc1155Quest is a lot less likely to have all participants complete the on-chain actions due to zero incentives given to promote the campaign.
+
+Consider implementing `maxProtocolRewards()`, `protocolFee()`, and `withdrawFee()` like it has been done so in Erc20Quest where deemed fit.
