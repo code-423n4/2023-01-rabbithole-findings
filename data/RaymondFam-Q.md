@@ -242,3 +242,14 @@ The design of the protocol seems to be overselling or over-distributing on-chain
 ```
 It is not sure whether or not the users are going to be compensated via a new Erc20Quest contract. If not, the amount of on-chain actions to be completed should not exceed `totalParticipants` to avoid these specific DOS grievances.
  
+## Threshold on boundary checks
+It is recommended adding a threshold when setting boundary limits to the two opposite ends. For instance, the third if block in the `constructor()` of Quest.sol could end up having `endTime_ = startTime_ + 1` and still bypass the revert in this edge instance.
+
+Consider having the if block refactored by adding a threshold of 7 days or any other suitable period as follows:
+
+```diff
+        if (endTime_ <= block.timestamp) revert EndTimeInPast();
+        if (startTime_ <= block.timestamp) revert StartTimeInPast();
+-        if (endTime_ <= startTime_) revert EndTimeLessThanOrEqualToStartTime();
++        if (endTime_ <= startTime_ + 7 days) revert EndTimeLessThanOrEqualToStartTime(); 
+```
