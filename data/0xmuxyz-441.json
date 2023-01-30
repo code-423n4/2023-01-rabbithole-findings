@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xmuxyz",
+  "risk": "3",
+  "title": "`rewardAmountInWeiOrTokenId` is not considered about some ERC20 tokens that has smaller number of decimals such as `USDC` , which results in that miscalculated-amount of reward tokens will be transferred when the `claim()` function",
+  "issueId": 441,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/441"
+}
