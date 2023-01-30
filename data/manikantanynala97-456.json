@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "manikantanynala97",
+  "risk": "3",
+  "title": "All the Funds in the contract can be drained by the protocolFeeRecipient after the Quest is Ended",
+  "issueId": 456,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/456"
+}
