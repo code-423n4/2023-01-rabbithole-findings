@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "ddimitrov22",
+  "risk": "2",
+  "title": "`OwnableUpgradeable` uses single-step ownership transfer",
+  "issueId": 622,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/622"
+}
