@@ -138,3 +138,57 @@ Here are the 2 instances found.
 Suggested fix:
 
 Remove `== true` and replace `== false` with the prefix negation `!`.
+
+## THE USE OF DELETE TO RESET VARIABLES
+`delete a` assigns the initial value for the type to `a`. i.e. for integers it is equivalent to `a = 0`, but it can also be used on arrays, where it assigns a dynamic array of length zero or a static array of the same length with all elements reset. For structs, it assigns a struct with all members reset. Similarly, it can also be used to set an address to zero address or a boolean to false. It has no effect on whole mappings though (as the keys of mappings may be arbitrary and are generally unknown). However, individual keys and what they map to can be deleted: If `a` is a mapping, then `delete a[x]` will delete the value stored at x.
+
+The delete key better conveys the intention and is also more idiomatic.
+
+Here are 2 specific instances found.
+
+[Quest.sol#L50-L65](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L50-L65)
+
+```
+51:        isPaused = false;
+
+64:        isPaused = false;
+```
+Suggested fix:
+
+```
+51:        delete isPaused;
+
+64:        delete isPaused;
+```
+## QUESTIDCOUNT IS OVER COUNTED BY 1
+In QuestFactory.sol, `questIdCount` is assigned `1` when `initialize()` is called. This leads to over counting by 1 when `++questIdCount` is executed in `createQuest()`, in the midst of creating an [Erc20Quest](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L101) or an [ERC1155Quest.](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L132)
+
+[QuestFactory.sol#L37-L50](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L37-L50)
+
+```
+    function initialize(
+        address claimSignerAddress_,
+        address rabbitholeReceiptContract_,
+        address protocolFeeRecipient_
+    ) public initializer {
+        __Ownable_init();
+        __AccessControl_init();
+        grantDefaultAdminAndCreateQuestRole(msg.sender);
+        claimSignerAddress = claimSignerAddress_;
+        rabbitholeReceiptContract = RabbitHoleReceipt(rabbitholeReceiptContract_);
+        setProtocolFeeRecipient(protocolFeeRecipient_);
+        setQuestFee(2_000);
+        questIdCount = 1;
+    }
+```
+Suggested fix:
+
+Initialize `questIdCount` to `0`.
+
+## MISSING PROTOCOL FEES AND REWARDS IN ERC1155QUEST
+It is noted that the Erc1155Quest is missing protocol fees and rewards that are found in ERC20Quest. This could lead to the former a lot less popularly known since no one is going to put in adequate efforts promoting the on-chain actions for free.
+
+Suggested fix:
+
+It is recommended implementing `maxProtocolRewards()`, `protocolFee()`, `withdrawFee()` and all other missing functionalities that are found in Erc20Quest.
+ 
