@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "minhquanym",
+  "risk": "2",
+  "title": "Users might be unable to claim receipt because of unbounded loop",
+  "issueId": 578,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/578"
+}
