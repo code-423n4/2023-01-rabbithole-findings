@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "cryptphi",
+  "risk": "2",
+  "title": "RabbitHoleReceipt can stop minting of receipts for claims",
+  "issueId": 668,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/668"
+}
