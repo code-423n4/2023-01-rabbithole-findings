@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Awesome",
+  "risk": "2",
+  "title": "`onlyMinter()` modifier does not revert",
+  "issueId": 395,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/395"
+}
