@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "zadaru13",
+  "risk": "2",
+  "title": "Participant who completed the quest might lose out if they didn't run mintReceipt()",
+  "issueId": 433,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/433"
+}
