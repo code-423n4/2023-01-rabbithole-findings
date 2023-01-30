@@ -6,7 +6,6 @@
 - [N-02] abi encode
 - [N-03] Rename nonClaimableTokens variable 
 - [S-01] Generating Perfect Code Headers
-- [G-01] SETTING THE CONSTRUCTOR TO PAYABLE
 
 ## [L-01] Use safeTransferOwnership instead of transferOwnership function
 
@@ -49,5 +48,4 @@ https://github.com/transmissions11/headers
                            TESTING 123
 //////////////////////////////////////////////////////////////*/
 
-## [G-01] SETTING THE CONSTRUCTOR TO PAYABLE
-Saves ~13 gas per instance
+
