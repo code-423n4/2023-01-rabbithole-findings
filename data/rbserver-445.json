@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "rbserver",
+  "risk": "3",
+  "title": "RabbitHole receipt, which has its associated rewards already claimed, can still be traded and transferred to others",
+  "issueId": 445,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/445"
+}
