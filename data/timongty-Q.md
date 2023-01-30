@@ -6,6 +6,7 @@ PS: this is my first time submitting a bug bounty so any feedback will be greatl
 
 > Suggested Fix: include a boolean check e.g. feeWithdrawn = True so that the withdrawFee() function can only be called once
 
+    /// In Quest.sol
     /// @notice add bool
     bool public feeWithdrawn;
 
@@ -17,6 +18,7 @@ PS: this is my first time submitting a bug bounty so any feedback will be greatl
         feeWithdrawn = false;
     }
 
+    /// In Erc20Quest.sol
     /// @notice Sends the protocol fee to the protocolFeeRecipient
     /// @dev Only callable when the quest is ended
     function withdrawFee() public onlyAdminWithdrawAfterEnd {        
