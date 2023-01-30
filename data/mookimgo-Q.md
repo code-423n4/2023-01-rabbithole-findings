@@ -13,3 +13,14 @@ function start() public virtual onlyOwner {
 ```
 
 Fix suggestion: update docs image to clarify that only owner can trigger `start()` function
+
+# 2. RabbitHoleTickets's uri function do not check whether tokenId_ exist
+
+Both RabbitHoleTickets and TicketRendererContract do not check whether given tokenId_ exist, consider adding a check.
+
+```
+    /// @dev return the uri, this delegates to the ticket renderer contract
+    function uri(uint tokenId_) public view virtual override(ERC1155Upgradeable) returns (string memory) {
+        return TicketRendererContract.generateTokenURI(tokenId_);
+    }
+```
