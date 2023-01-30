@@ -6,7 +6,7 @@
 - [L-04] LOSS OF PRECISION DUE TO ROUNDING
 - [L-05] LACK OF CHECKS ADDRESS(0)
 - [N-01] pragma solidity ^ should not be used
-- [N-02] abi encode
+- [N-02] Should use bytes.concat() instead of abi.encodePacked
 - [N-03] Rename nonClaimableTokens variable 
 - [N-04] INCLUDE RETURN PARAMETERS IN NATSPEC COMMENTS
 - [N-05] FOR MODERN AND MORE READABLE CODE; UPDATE IMPORT USAGES
@@ -57,7 +57,7 @@ Currently: pragma solidity ^0.8.15 was used across all files
 
 Solution: Should not use ^ due as some functions may be deprecate and will not be able to function as it is
 
-## [N-02] abi encode
+## [N-02]  Should use bytes.concat() instead of abi.encodePacked
 Affected Code: 
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L72
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L105
