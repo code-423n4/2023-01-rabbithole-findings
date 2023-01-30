@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Tricko",
+  "risk": "2",
+  "title": "hash-signature pair used for `mintReceipt` can be used in signature replay attacks on other chains if `questId_` is the same",
+  "issueId": 480,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/480"
+}
