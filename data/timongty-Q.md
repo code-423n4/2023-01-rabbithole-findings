@@ -6,7 +6,7 @@ PS: this is my first time submitting a bug bounty so any feedback will be greatl
 
 > Suggested Fix: include a boolean check e.g. feeWithdrawn = True so that the withdrawFee() function can only be called once
 
-    /// @notice initialise feeWithdrawn = False
+    /// @notice add bool
     bool public feeWithdrawn;
 
     /// @notice Starts the Quest
