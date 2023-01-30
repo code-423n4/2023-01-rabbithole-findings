@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "simon135",
+  "risk": "3",
+  "title": "When  `rewardToken` is erc1155/erc777,an attacker can reenter and cause funds to be stuck in the contract forever",
+  "issueId": 523,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/523"
+}
