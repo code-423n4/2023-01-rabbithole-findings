@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "vagrant",
+  "risk": "2",
+  "title": "Owner can mint infite amount of recipees and can grief other participants",
+  "issueId": 481,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/481"
+}
