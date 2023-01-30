@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Kenshin",
+  "risk": "2",
+  "title": "Receipt directly minted from RabbitHoleReceipt is not counted as supply",
+  "issueId": 415,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/415"
+}
