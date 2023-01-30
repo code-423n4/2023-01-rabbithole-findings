@@ -24,3 +24,7 @@ Both RabbitHoleTickets and TicketRendererContract do not check whether given tok
         return TicketRendererContract.generateTokenURI(tokenId_);
     }
 ```
+
+# 3. Consider adding a function to do mintReceipt and claim in one transaction
+
+In current design, users have to sign two txs to get the reward, consider adding a function to do both mintReceipt and claim reward to enhance user experience and save gas.
