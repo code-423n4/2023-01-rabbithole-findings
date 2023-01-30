@@ -6,6 +6,7 @@
 - [N-04] Critical events should be indexed 
 - [N-05] Confusing variable name
 - [N-06] Open Todos
+- [N-07] Function style guide not adhered
 - [L-01] Overall tests percentage not 100%
 - [L-02] Use function `safeTransferOwnership` instead of `transferOwnership` 
 - [L-03] Quest endTime not indicated to users
@@ -55,6 +56,24 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 Code architecture, incentives, and error handling/reporting questions/issues should be resolved before deployment.
 
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuest.sol#L4
+
+## [N-07] Function style guide not adhered
+
+Per solidity's documentation style guide, ordering helps readers identify which functions they can call and to find the constructor and fallback definitions easier.
+
+Functions should be grouped according to their visibility and ordered:
+
+    constructor
+    fallback function (if exists)
+    external
+    public
+    internal
+    private
+
+For example (public comes after internal here where is should be the other way round): 
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L58-L87
+
 
 ## [L-01] Overall tests percentage not 100%
 
