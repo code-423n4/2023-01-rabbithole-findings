@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "holme",
+  "risk": "2",
+  "title": "withdrawRemainingTokens() in the Erc1155Quest withdraws all tokens and does not consider the amount of unclaimed tokens",
+  "issueId": 678,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/678"
+}
