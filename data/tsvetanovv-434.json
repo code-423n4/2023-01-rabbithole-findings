@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "tsvetanovv",
+  "risk": "2",
+  "title": "No storage gap for upgradable contracts might lead to storage slot collision",
+  "issueId": 434,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/434"
+}
