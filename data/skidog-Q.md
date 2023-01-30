@@ -12,8 +12,7 @@ It is best practice to use the latest version of Solidity in order to take advan
 
 Use the latest version of solidity, which is 0.8.17
 
-
-# Order of Functions Should Follow the Solidity Style Guide
+# Follow Solidity Style Guide When Writing Functions
 
 ## Context
 
@@ -21,7 +20,7 @@ All contracts
 
 ### Description
 
-Per the solidity style guide - https://docs.soliditylang.org/en/v0.8.17/style-guide.html
+Per the solidity style guide - https://docs.soliditylang.org/en/v0.8.17/style-guide.html#order-of-functions
 
 Ordering helps readers identify which functions they can call and to find the constructor and fallback definitions easier.
 
@@ -42,3 +41,4 @@ internal
 private
 
 Within a grouping, place the view and pure functions last.
+
