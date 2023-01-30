@@ -125,3 +125,51 @@ function generateSVG(uint tokenId_, string memory questId_) public pure returns 
     return string(abi.encodePacked('data:image/svg+xml;base64,', Base64.encode(svg)));
 }
 ```
+  
+
+# Other Findings
+
+## 1. Using Floating Pragma Version
+
+### Vulnerability Details
+
+Floating pragmas are used in all the contracts. However, the contracts should be deployed with the same compiler version. Locking the pragma helps ensuring that contracts do not accidentally get deployed using, for example, an outdated compiler version that might introduce bugs that affect the contract system negatively. 
+
+Reference: [https://swcregistry.io/docs/SWC-103](https://swcregistry.io/docs/SWC-103)
+
+### **Recommended Mitigation Steps**
+
+Lock the pragma version: delete `pragma solidity ^0.8.15` in favor of `pragma solidity 0.8.15`.   
+
+
+## 2. Using `public` function visibility, where `private` could suffice
+
+### Lines of Code
+
+[https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L40](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L40)
+
+### Vulnerability Details
+
+The function `generateDataURI` is called only inside the same contract `ReceiptRenderer.sol`, therefore, there is no need to assign `public` visibility to it, which has higher gas consumption than the `private` one.  
+
+
+## 3. Missing NatSpec
+
+### Lines of Code
+
+[https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L40](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/ReceiptRenderer.sol#L40)
+
+### Vulnerability Details
+
+The function `generateDataURI` doesn’t have NatSpec.  
+
+
+## 4. Event is Missing `indexed` Field
+
+### Lines of Code
+
+[https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuest.sol#L8](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuest.sol#L8)
+
+### Vulnerability Details
+
+The `event` fields are recommended to be `indexed`.
