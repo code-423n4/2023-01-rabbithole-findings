@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "bin2chen",
+  "risk": "3",
+  "title": "A malicious Erc20Quest owner can steal the protocolFee",
+  "issueId": 379,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/379"
+}
