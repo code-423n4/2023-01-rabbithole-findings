@@ -5,7 +5,7 @@
 - [L-03] INITIALIZE() FUNCTION CAN BE CALLED BY ANYBODY
 - [L-04] LOSS OF PRECISION DUE TO ROUNDING
 - [L-05] LACK OF CHECKS ADDRESS(0)
-- [N-01] pragma solidity ^ should not be used
+- [N-01] To lock pragmas to specific compiler version
 - [N-02] Should use bytes.concat() instead of abi.encodePacked
 - [N-03] Rename nonClaimableTokens variable 
 - [N-04] INCLUDE RETURN PARAMETERS IN NATSPEC COMMENTS
@@ -51,11 +51,24 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L44
 
 
-## [N-01] pragma solidity ^ should not be used
+## [N-01] To lock pragmas to specific compiler version
 
 Currently: pragma solidity ^0.8.15 was used across all files
+Issue: Should not use ^ due as some functions may be deprecate and will not be able to function as it is
 
-Solution: Should not use ^ due as some functions may be deprecate and will not be able to function as it is
+Description:
+Pragma statements can be allowed to float when a contract is intended for consumption by other developers, as in the case with contracts in a library or EthPM package. Otherwise, the developer would need to manually update the pragma in order to compile locally.
+https://swcregistry.io/docs/SWC-103
+
+Recommendation:
+Ethereum Smart Contract Best Practices - Lock pragmas to specific compiler version.
+solidity-specific/locking-pragmas
+
+Affected Code:
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L2
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L2
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L2
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L2
 
 ## [N-02]  Should use bytes.concat() instead of abi.encodePacked
 Affected Code: 
