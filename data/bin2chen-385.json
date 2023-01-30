@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "bin2chen",
+  "risk": "2",
+  "title": "After Erc1155Quest.withdrawRemainingTokens(), unclaim user can't  call claim()",
+  "issueId": 385,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/385"
+}
