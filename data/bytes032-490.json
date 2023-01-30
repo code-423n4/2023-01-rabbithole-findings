@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "bytes032",
+  "risk": "2",
+  "title": "royaltyInfo() in RabbitHoleReceipt & RabbitHoleTickets can be manipulated to exceed sale price",
+  "issueId": 490,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/490"
+}
