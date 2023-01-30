@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "adriro",
+  "risk": "3",
+  "title": "`withdrawRemainingTokens` fails to consider unclaimed receipts in `Erc1155Quest`",
+  "issueId": 606,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/606"
+}
