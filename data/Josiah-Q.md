@@ -191,4 +191,106 @@ It is noted that the Erc1155Quest is missing protocol fees and rewards that are 
 Suggested fix:
 
 It is recommended implementing `maxProtocolRewards()`, `protocolFee()`, `withdrawFee()` and all other missing functionalities that are found in Erc20Quest.
+
+## USE MORE RECENT VERSIONS OF SOLIDITY
+Lower versions like 0.8.15 are being used in the protocol contracts. For better security, it is best practice to use the latest Solidity version, 0.8.17.
+
+Please visit the versions security fix list in the link below for detailed info:
+
+https://github.com/ethereum/solidity/blob/develop/Changelog.md
+
+## SOLIDITY COMPILER OPTIMIZATIONS COULD BE PROBLEMATIC
+```
+hardhat.config.js:
+  29  module.exports = {
+  30:   solidity: {
+  31:     compilers: [
+  32:       {
+  33:         version: "0.8.15",
+  34:         settings: {
+  35:           optimizer: {
+  36:               enabled: true,
+  37:               runs: 1000000
+  38
+            }
+```
+Description: Protocol has enabled optional compiler optimizations in Solidity. There have been several optimization bugs with security implications. Moreover, optimizations are actively being developed. Solidity compiler optimizations are disabled by default, and it is unclear how many contracts in the wild actually use them.
+
+Therefore, it is unclear how well they are being tested and exercised. High-severity security issues due to optimization bugs have occurred in the past. A high-severity bug in the emscripten-generated solc-js compiler used by Truffle and Remix persisted until late 2018. The fix for this bug was not reported in the Solidity CHANGELOG.
+
+Another high-severity optimization bug resulting in incorrect bit shift results was patched in Solidity 0.5.6. More recently, another bug due to the incorrect caching of keccak256 was reported. A compiler audit of Solidity from November 2018 concluded that the optional optimizations may not be safe. It is likely that there are latent bugs related to optimization and that new bugs will be introduced due to future optimizations.
+
+Exploit Scenario A latent or future bug in Solidity compiler optimizations—or in the Emscripten transpilation to solc-js—causes a security vulnerability in the contracts.
+
+Recommendation: Short term, measure the gas savings from optimizations and carefully weigh them against the possibility of an optimization-related bug. Long term, monitor the development and adoption of Solidity compiler optimizations to assess their maturity.
+
+## CONTRACT LAYOUT ON FUNCTION WRITINGS COMPLIANCE WITH SOLIDITY'S STYLE GUIDE
+As denoted in Solidity's Style Guide:
+
+https://docs.soliditylang.org/en/v0.8.17/style-guide.html
+
+In order to help readers identify which functions they can call, and find the constructor and fallback definitions more easily, functions should be grouped according to their visibility and ordered in the following manner:
+
+constructor, receive function (if exists), fallback function (if exists), external, public, internal, private
+
+And, within a grouping, place the view and pure functions last.
+
+Additionally, inside each contract, library or interface, use the following order:
+
+type declarations, state variables, events, modifiers, functions
+
+Where possible, consider adhering to the above guidelines for all contract instances entailed.
  
+## USE UINT256 INSTEAD OF UINT
+QuestFactory.sol is found to be using `uint` numerously in its code base.
+
+[QuestFactory.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol)
+
+Suggested fix: 
+
+For explicitness reason, it is recommended replacing all instances of `uint` with `uint256`.
+
+## MISSING EVENTS ON CRITICAL OPERATIONS
+Critical operations not triggering events will make it difficult to review the correct behavior of the contracts. Users and blockchain monitoring systems will not be able to easily detect suspicious behaviors without events.
+
+Here are some of the instances found.
+
+[RabbitHoleTickets.sol#L52-L62](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L52-L62)
+
+```
+    /// @dev set the ticket renderer contract
+    /// @param ticketRenderer_ the address of the ticket renderer contract
+    function setTicketRenderer(address ticketRenderer_) public onlyOwner {
+        TicketRendererContract = TicketRenderer(ticketRenderer_);
+    }
+
+    /// @dev set the royalty recipient
+    /// @param royaltyRecipient_ the address of the royalty recipient
+    function setRoyaltyRecipient(address royaltyRecipient_) public onlyOwner {
+        royaltyRecipient = royaltyRecipient_;
+    }
+```
+## NEW AND OLD VALUES SHOULD BE EMITTED
+It is recommended having events associated with setter functions emit both the new and old values instead of just the new value. 
+
+Here are some of the instances found.
+
+[RabbitHoleTickets.sol#L64-L76](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L64-L76)
+
+```
+    /// @dev set the royalty fee
+    /// @param royaltyFee_ the royalty fee
+    function setRoyaltyFee(uint256 royaltyFee_) public onlyOwner {
+        royaltyFee = royaltyFee_;
+        emit RoyaltyFeeSet(royaltyFee_);
+    }
+
+    /// @dev set the minter address
+    /// @param minterAddress_ the address of the minter
+    function setMinterAddress(address minterAddress_) public onlyOwner {
+        minterAddress = minterAddress_;
+        emit MinterAddressSet(minterAddress_);
+    }
+```
+## COMPILER VERSION PRAGMA SPECIFICITY
+Non-library contracts and interfaces should avoid using floating pragmas ^0.8.15. Doing this may be a security risk for the actual application implementation itself. For instance, a known vulnerable compiler version may accidentally be selected or a security tool might fallback to an older compiler version leading to checking a different EVM compilation that is ultimately deployed on the blockchain.
