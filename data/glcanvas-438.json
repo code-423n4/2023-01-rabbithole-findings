@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "glcanvas",
+  "risk": "3",
+  "title": "protocolFeeRecipient might be compromised and recipient might lost all funds",
+  "issueId": 438,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/438"
+}
