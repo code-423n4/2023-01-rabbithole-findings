@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Kenshin",
+  "risk": "3",
+  "title": "Receipt can still be minted after reward token has been withdrawn",
+  "issueId": 412,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/412"
+}
