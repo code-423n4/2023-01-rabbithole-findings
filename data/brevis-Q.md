@@ -14,7 +14,9 @@ The receipt text is rendered incorrectly.
 
 Here is the code of `generateSVG` function (link provided in the **Lines of code** section above):
 
-```solidity
+```javascript
+// ReceiptRenderer.sol
+
 /// @dev generates the on-chain SVG for an ERC-721 token ID
 /// @param tokenId_ The token id to generate the svg for
 /// @param questId_ The questId tied to the tokenId
@@ -94,7 +96,9 @@ As a result, the above code renders as:
 
 Accordingly, to achieve the output displayed above, the `generateSVG` function shall be modified as shown below:
 
-```solidity
+```javascript
+// ReceiptRenderer.sol
+
 /// @dev generates the on-chain SVG for an ERC-721 token ID
 /// @param tokenId_ The token id to generate the svg for
 /// @param questId_ The questId tied to the tokenId
