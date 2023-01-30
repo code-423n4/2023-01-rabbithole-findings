@@ -1,0 +1,1 @@
+[GAS1]. Remove `onlyOwner` modfier from `withdrawRemainingTokens` functions in `ERC20Quest` and `ERC1155Quest` contracts, because this modifier is already being used via the `super.withdrawRemainingTokens(to_)` call.
