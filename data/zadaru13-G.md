@@ -1,0 +1,5 @@
+# Table of contents
+- [G-01] SETTING THE CONSTRUCTOR TO PAYABLE
+
+## [G-01] SETTING THE CONSTRUCTOR TO PAYABLE
+Saves ~13 gas per instance
