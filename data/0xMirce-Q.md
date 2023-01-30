@@ -49,4 +49,4 @@ It is not so common that in the same contract exists Ownable and AccessControl a
 But, if the address for one of `onlyOwner` or `DEFAULT_ADMIN_ROLE` is changed, then it would be possible to call grantRole and revokeRole with the `onlyOwner` account with function from the line [QuestFactory.sol#L142](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L142). In the other case, it will be possible with `DEFAULT_ADMIN_ROLE` directly call `QuestFactoryContract.grantRole()` or `QuestFactoryContract.revokeRole()` and this could cause potential divergence.
 
 #### Recommended Mitigation Steps
-Remove the function from the line [QuestFactory.sol#L142](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L142
+Remove the function from the line [QuestFactory.sol#L142](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L142)
