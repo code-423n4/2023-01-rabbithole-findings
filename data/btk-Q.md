@@ -7,7 +7,7 @@
 | [L-02] | Missing Event for critical changes                            | 15            |
 | [L-03] | Loss of precision due to rounding                             | 4             |
 | [L-04] | `onlyMinter()` modifier is not working as expected            | 2             |
-| [L-05] | Critical changes should use-two step procedure                | 2             |
+| [L-05] | Critical changes should use two-step procedure                | 2             |
 | [L-06] | No storage gap for upgradeable contracts                      | 3             |
 | [L-07] | `royaltyFee` is not capped at 100%                            | 2             |
 | [L-08] | Protocol is using deprecated `npm` dependency (axios)         | 1             |
@@ -56,12 +56,12 @@ Check of `address(0)` to protect the code from `(0x00000000000000000000000000000
 
 #### Lines of code 
 
-- [QuestFactory.sol:172](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L172)
-- [RabbitHoleReceipt.sol:65](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L65)
-- [RabbitHoleReceipt.sol:77](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L77)
-- [RabbitHoleReceipt.sol:83](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L83)
-- [RabbitHoleTickets.sol:54](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L54)
-- [RabbitHoleTickets.sol:73](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L73)
+- [QuestFactory.sol#L172](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L172)
+- [RRabbitHoleReceipt.sol#L65](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L65)
+- [/RabbitHoleReceipt.sol#L77](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L77)
+- [RabbitHoleReceipt.sol#L83](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L83)
+- [RabbitHoleTickets.sol#L54](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L54)
+- [RabbitHoleTickets.sol#L73](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L73)
 
 #### Recommended Mitigation Steps
 
@@ -87,21 +87,21 @@ Events help non-contract tools to track changes, and events prevent users from b
 
 #### Lines of code 
 
-- [QuestFactory.sol:159](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L159)
-- [QuestFactory.sol:165](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L165)
-- [QuestFactory.sol:172](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L172)
-- [QuestFactory.sol:179](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L179)
-- [QuestFactory.sol:186](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L186)
-- [RabbitHoleReceipt.sol:65](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L65)
-- [RabbitHoleReceipt.sol:71](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L71)
-- [RabbitHoleReceipt.sol:77](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L77)
-- [Quest.sol:50](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L50)
-- [Quest.sol:57](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L57)
-- [Quest.sol:63](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L63)
-- [RabbitHoleTickets.sol:54](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L54)
-- [RabbitHoleTickets.sol:60](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L60)
-- [Erc20Quest.sol:102](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L102)
-- [Erc1155Quest.sol:54](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L54)
+- [QuestFactory.sol#L159](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L159)
+- [QuestFactory.sol#L165](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L165)
+- [QuestFactory.sol#L172](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L172)
+- [QuestFactory.sol#L179](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L179)
+- [QuestFactory.sol#L186](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L186)
+- [RabbitHoleReceipt.sol#L65](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L65)
+- [RabbitHoleReceipt.sol#L71](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L71)
+- [RabbitHoleReceipt.sol#L77](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L77)
+- [Quest.sol#L50](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L50)
+- [Quest.sol#L57](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L57)
+- [Quest.sol#L63](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L63)
+- [RabbitHoleTickets.sol#L54](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L54)
+- [RabbitHoleTickets.sol#L60](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L60)
+- [Erc20Quest.sol#L102](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L102)
+- [Erc1155Quest.sol#L54](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L54)
 
 #### Recommended Mitigation Steps
 
@@ -119,10 +119,10 @@ Loss of precision due to the nature of arithmetics and rounding errors.
 
 #### Lines of code 
 
-- [RabbitHoleReceipt.sol:184](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L184)
-- [RabbitHoleTickets.sol:113](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L113)
-- [Erc20Quest.sol:53](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L53)
-- [Erc20Quest.sol:97](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L97)
+- [RabbitHoleReceipt.sol#L184](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L184)
+- [RabbitHoleTickets.sol#L1](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L113)
+- [Erc20Quest.sol#L53](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L53)
+- [Erc20Quest.sol#L97](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L97)
 
 #### Recommended Mitigation Steps
 
@@ -155,8 +155,8 @@ Thus, everyone can mint tokens:
 
 #### Lines of code 
 
-- [RabbitHoleReceipt.sol:58](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L58)
-- [RabbitHoleTickets.sol:47](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L47)
+- [RabbitHoleReceipt.sol#L58](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L58)
+- [RabbitHoleTickets.sol#L47](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L47)
 
 #### Recommended Mitigation Steps
 
@@ -191,8 +191,8 @@ in case of transferring the ownership to an invalid address.
 
 #### Lines of code 
 
-- [RabbitHoleReceipt.sol:7](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L7)
-- [RabbitHoleTickets.sol:5](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L5)
+- [RabbitHoleReceipt.sol#L7](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L7)
+- [RabbitHoleTickets.sol#L5](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L5)
 
 #### Recommended Mitigation Steps
 
@@ -203,8 +203,6 @@ Consider adding two step procedure on the critical functions where the first is 
 #### Description
 
 For upgradeable contracts, inheriting contracts may introduce new variables. In order to be able to add new variables to the upgradeable contract without causing storage collisions, a storage gap should be added to the upgradeable contract.
-
-In order to be able to add new variables to the upgradeable contract without causing storage collisions, a storage gap should be added to the upgradeable contract.
 
 See [this](https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps) for a description of this storage variable. 
 
@@ -245,12 +243,12 @@ The `royaltyFee` is not capped at 100%, Thus it may exceed the `salePrice` which
 
 #### Lines of code 
 
-- [RabbitHoleTickets.sol:66](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66)
-- [RabbitHoleReceipt.sol:90](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90)
+- [RabbitHoleTickets.sol#L66](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66)
+- [RabbitHoleReceipt.sol#L90](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90)
 
 #### Recommended Mitigation Steps
 
-Add a timelock to the `setRoyaltyFee()` function, or add a `feeDenominator()` function:
+Add a `feeDenominator()` function:
 
 ```solidity
     /**
@@ -287,11 +285,11 @@ The protocol is using deprecated `npm` dependency `(axios : 0.20.0)`
 
 #### Lines of code 
 
-- [package.json:49](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/package.json#L49)
+- [package.json#L49](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/package.json#L49)
 
 #### Recommended Mitigation Steps
 
-Upgrade `axios` to version `0.21.3` or higher.
+Upgrade `axios` to version `0.21.3` or [higher](https://www.npmjs.com/package/axios?activeTab=versions).
 
 ## [L-09] Value is not validated to be different than the existing one
 
@@ -308,10 +306,10 @@ While the value is validated to be in the constant bounds, it is not validated t
 
 #### Lines of code 
 
-- [RabbitHoleReceipt.sol:83](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L83)
-- [RabbitHoleReceipt.sol:90](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90)
-- [RabbitHoleTickets.sol:66](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66)
-- [RabbitHoleTickets.sol:73](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L73)
+- [RabbitHoleReceipt.sol#L83](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L83)
+- [RabbitHoleReceipt.sol#L90](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90)
+- [RabbitHoleTickets.sol#L66](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66)
+- [RabbitHoleTickets.sol#L73](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L73)
 
 #### Recommended Mitigation Steps
 
@@ -338,9 +336,9 @@ It is a good practice to give time for users to react and adjust to critical cha
 
 #### Lines of code 
 
-- [QuestFactory.sol:186](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L186)
-- [RabbitHoleReceipt.sol:90](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90)
-- [RabbitHoleTickets.sol:66](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66)
+- [QuestFactory.sol#L186](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L186)
+- [RabbitHoleReceipt.sol#L90](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90)
+- [RabbitHoleTickets.sol#L66](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66)
 
 #### Recommended Mitigation Steps
 
@@ -424,8 +422,8 @@ Constants in comparisons should appear on the left side, doing so will prevent t
 
 #### Lines of code 
 
-- [Quest.sol:101](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L101)
-- [Quest.sol:110](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L110)
+- [Quest.sol#L101](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L101)
+- [Quest.sol#L110](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L110)
 
 #### Recommended Mitigation Steps
 
@@ -464,7 +462,7 @@ Exploit Scenario A latent or future bug in Solidity compiler optimizations—or 
 
 #### Lines of code 
 
-- [hardhat.config.ts:30](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/hardhat.config.ts#L30)
+- [hardhat.config.ts#L30](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/hardhat.config.ts#L30)
 
 #### Recommended Mitigation Steps
 
@@ -482,7 +480,7 @@ While it doesn't save any gas because the compiler knows that developers often m
 
 #### Lines of code 
 
-- [QuestFactory.sol:17](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L17)
+- [QuestFactory.sol#L17](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L17)
 
 #### Recommended Mitigation Steps
 
@@ -503,10 +501,10 @@ Events that mark critical parameter changes should contain both the old and the 
 
 #### Lines of code 
 
-- [RabbitHoleReceipt.sol:83](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L83)
-- [RabbitHoleReceipt.sol:90](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90)
-- [RabbitHoleTickets.sol:66](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66)
-- [RabbitHoleTickets.sol:73](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L73)
+- [RabbitHoleReceipt.sol#L83](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L83)
+- [RabbitHoleReceipt.sol#L90](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L90)
+- [RabbitHoleTickets.sol#L66](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L66)
+- [RabbitHoleTickets.sol#L73](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L73)
 
 #### Recommended Mitigation Steps
 
@@ -531,20 +529,20 @@ Events that mark critical parameter changes should contain both the old and the 
 
 #### Lines of code 
 
-- [QuestFactory.sol:72](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L72)
-- [QuestFactory.sol:105](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L105)
-- [QuestFactory.sol:211](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L211)
-- [QuestFactory.sol:222](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L222)
-- [ReceiptRenderer.sol:37](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L37)
-- [ReceiptRenderer.sol:48](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L48)
-- [ReceiptRenderer.sol:63](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L63)
-- [ReceiptRenderer.sol:83](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L83)
-- [ReceiptRenderer.sol:101](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L101)
-- [ReceiptRenderer.sol:113](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L113)
-- [TicketRenderer.sol:19](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/TicketRenderer.sol#L19)
-- [TicketRenderer.sol:30](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/TicketRenderer.sol#L30)
-- [TicketRenderer.sol:37](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/TicketRenderer.sol#L37)
-- [TicketRenderer.sol:46](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/TicketRenderer.sol#L46)
+- [QuestFactory.sol#L72](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L72)
+- [QuestFactory.sol#L105](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L105)
+- [QuestFactory.sol#L211](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L211)
+- [QuestFactory.sol#L222](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L222)
+- [ReceiptRenderer.sol#L37](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L37)
+- [ReceiptRenderer.sol#L48](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L48)
+- [ReceiptRenderer.sol#L63](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L63)
+- [ReceiptRenderer.sol#L83](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L83)
+- [ReceiptRenderer.sol#L101](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L101)
+- [ReceiptRenderer.sol#L113](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/ReceiptRenderer.sol#L113)
+- [TicketRenderer.sol#L19](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/TicketRenderer.sol#L19)
+- [TicketRenderer.sol#L30](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/TicketRenderer.sol#L30)
+- [TicketRenderer.sol#L37](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/TicketRenderer.sol#L37)
+- [TicketRenderer.sol#L46](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/TicketRenderer.sol#L46)
 
 #### Recommended Mitigation Steps
 
@@ -603,9 +601,9 @@ Use specific imports syntax per solidity [docs](https://docs.soliditylang.org/en
 
 #### Lines of code 
 
-- [QuestFactory.sol:41](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/QuestFactory.sol#L41)
-- [RabbitHoleReceipt.sol:48](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/RabbitHoleReceipt.sol#L48)
-- [RabbitHoleTickets.sol:37](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/RabbitHoleTickets.sol#L37)
+- [QuestFactory.sol#L41](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/QuestFactory.sol#L41)
+- [RabbitHoleReceipt.sol#L48](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/RabbitHoleReceipt.sol#L48)
+- [RabbitHoleTickets.sol#L37](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/RabbitHoleTickets.sol#L37)
 
 #### Recommended Mitigation Steps
 
@@ -657,12 +655,12 @@ Usually lines in source code are limited to 80 characters. Today's screens are m
 
 #### Lines of code 
 
-- [Erc20Quest.sol:56](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Erc20Quest.sol#L56)
-- [Erc20Quest.sol:57](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Erc20Quest.sol#L57)
-- [Erc20Quest.sol:79](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Erc20Quest.sol#L79)
-- [Quest.sol:56](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Quest.sol#L56)
-- [Quest.sol:62](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Quest.sol#L62)
-- [IQuestFactory.sol:16](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/interfaces/IQuestFactory.sol#L16)
+- [Erc20Quest.sol#L56](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Erc20Quest.sol#L56)
+- [Erc20Quest.sol#L57](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Erc20Quest.sol#L57)
+- [Erc20Quest.sol#L79](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Erc20Quest.sol#L79)
+- [Quest.sol#L56](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Quest.sol#L56)
+- [Quest.sol#L62](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Quest.sol#L62)
+- [IQuestFactory.sol#L16](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/interfaces/IQuestFactory.sol#L16)
 
 #### Recommended Mitigation Steps
 
@@ -735,9 +733,9 @@ Critical changes should use-two step procedure.
 
 #### Lines of code 
 
-- [QuestFactory.sol:165](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/QuestFactory.sol#L165)
-- [RabbitHoleReceipt.sol:71](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/RabbitHoleReceipt.sol#L71)
-- [RabbitHoleTickets.sol:60](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/RabbitHoleTickets.sol#L60)
+- [QuestFactory.sol#L165](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/QuestFactory.sol#L165)
+- [RabbitHoleReceipt.sol#L71](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/RabbitHoleReceipt.sol#L71)
+- [RabbitHoleTickets.sol#L60](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/RabbitHoleTickets.sol#L60)
 
 #### Recommended Mitigation Steps
 
@@ -783,8 +781,8 @@ Erc1155Quest newQuest = new Erc1155Quest(
 
 #### Lines of code 
 
-- [QuestFactory.sol:82](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L82)
-- [QuestFactory.sol:115](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L115)
+- [QuestFactory.sol#L82](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L82)
+- [QuestFactory.sol#L115](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L115)
 
 #### Recommended Mitigation Steps
 
@@ -814,12 +812,12 @@ Add NatSpec comments describing mapping keys and values.
 
 #### Lines of code 
 
-- [Quest.sol:24](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L24)
-- [QuestFactory.sol:20](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L20)
-- [QuestFactory.sol:28](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L28)
-- [QuestFactory.sol:30](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L30)
-- [RabbitHoleReceipt.sol:30](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L30)
-- [RabbitHoleReceipt.sol:34](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L34)
+- [Quest.sol#L24](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L24)
+- [QuestFactory.sol#L20](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L20)
+- [QuestFactory.sol#L28](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L28)
+- [QuestFactory.sol#L30](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L30)
+- [RabbitHoleReceipt.sol#L30](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L30)
+- [RabbitHoleReceipt.sol#L34](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L34)
 
 #### Recommended Mitigation Steps
 
