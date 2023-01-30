@@ -1,0 +1,10 @@
+[L1] Use [Ownable2StepUpgradeable](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/access/Ownable2StepUpgradeable.sol) instead of [Ownable2Step](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable/blob/master/contracts/access/OwnableUpgradeable.sol) : in [Quest](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol), [QuestFactory](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol), [RabbitHoleReceipt](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol) and [RabbitHoleTickets](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol).
+
+[L2] SHOULD AN AIRDROP TOKEN ARRIVE ON THE ERC20Quest OR ERC1155Quest CONTRACTS, IT WILL BE STUCK
+NFTs are transferred to the ERC1155Quest contract and in case of airdrop due to these NFTs, it will be stuck in the contract as there is no function to take these airdrop tokens from the contract. Same thing happens for the tokens transferred to the ERC20Quest contract.
+
+Important NFT project owners are given airdrops, especially since the project includes NFTs such as BAYC, Moonbirds, Doodles, Azuki, there is a high probability of receiving Airdrops, but there is no function to withdraw incoming airdrop tokens, so airdrop tokens will be stuck in the contract.
+
+A common method for airdrops is to collect airdrops with claim, so the ERC1155Quest.sol and ERC20Quest.sol contracts can be considered upgradagable, adding a function to make claim *non* reward tokens (either erc20, erc721 or erc1155 being airdropped, but with different address than reward token).
+
+[L3] Change name of custom error [NoWithdrawDuringClaim](https://github.com/rabbitholegg/quest-protocol/blob/main/contracts/Quest.sol#L77) to more correct  `NoWithdrawDuringClaimOrBeforeStart`.
