@@ -1,6 +1,6 @@
 # QA Report for RabbitHole Quest Protocol contest
 ## Overview
-During the audit, 8 non-critical issues were found.
+During the audit, 8 low issues were found.
 
 № | Title | Risk Rating  | Instance Count
 --- | --- | --- | ---
