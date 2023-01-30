@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "rbserver",
+  "risk": "3",
+  "title": "User, who is not `RabbitHoleReceipt` contract's minter, can mint RabbitHole receipts and claim associated rewards",
+  "issueId": 449,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/449"
+}
