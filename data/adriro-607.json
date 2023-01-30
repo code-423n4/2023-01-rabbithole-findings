@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "adriro",
+  "risk": "3",
+  "title": "Changing the `RabbitHoleReceipt` contract in the `QuestFactory` will break rewards for existing quests",
+  "issueId": 607,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/607"
+}
