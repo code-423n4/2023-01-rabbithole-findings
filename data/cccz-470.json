@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "cccz",
+  "risk": "3",
+  "title": "A malicious user can call Erc20Quest.withdrawFee to front-run Erc20Quest.withdrawRemainingTokens, thus locking the protocolFee amount of reward tokens in the contract",
+  "issueId": 470,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/470"
+}
