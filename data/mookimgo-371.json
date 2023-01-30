@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "mookimgo",
+  "risk": "2",
+  "title": "DoS of user claim due to loop of getOwnedTokenIdsOfQuest",
+  "issueId": 371,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/371"
+}
