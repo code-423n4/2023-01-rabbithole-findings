@@ -268,7 +268,6 @@ This can be avoid by refactoring the code:
 ```
 
 In the case of ```claim``` function in ```Quest``` contract, function ```isClaimed``` is called inside the loop, which make use of ```claimedList``` state variable. In order to save gas using a storage pointer, the loop should be refactored to:
-claimedList[tokenId_] == true;
 
 ```diff
     // Quest.claim
