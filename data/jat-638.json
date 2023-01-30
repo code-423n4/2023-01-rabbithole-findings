@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "jat",
+  "risk": "2",
+  "title": "withdrawRemainingTokens in Erc20Quest could be called several times by the owner, allowing him to withdraw part of the non-claimable tokens",
+  "issueId": 638,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/638"
+}
