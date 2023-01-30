@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "0xmuxyz",
+  "risk": "3",
+  "title": "Lack of input validation of `royaltyFee` , which results in the bad situation that the owner lose the opportunity to receive the royalty payment.",
+  "issueId": 478,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/478"
+}
