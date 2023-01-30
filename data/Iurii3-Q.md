@@ -38,3 +38,11 @@ modifier onlyAdminWithdrawAfterEnd() actually does not check if admin calls it, 
 
 wrong variable name, should be claimingAddress_Balance instead of msgSenderBalance
 [RabbitHoleReceipt.sol#L113](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L113)
+
+
+### [NC-05] WithdrawRemainingTokens function on the ERC1155Quest does not count on unclaimed tokens
+
+[Erc1155Quest.sol#L60](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L60)
+
+WithdrawRemainingTokens on ERC1155 Quest does not check if there are remaining unclaimed tokens by participants and withdraw full balance on the contract. In this case it must be used only after all participants claim their rewards that may require additional checks from the team.
+
