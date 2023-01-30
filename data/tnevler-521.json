@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "tnevler",
+  "risk": "3",
+  "title": "Using withdrawFee() function, attacker can withdraw all tokens from the balance of the contract",
+  "issueId": 521,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/521"
+}
