@@ -1,12 +1,14 @@
+
 | Number |Details|Context|Approx. gas saved|
 |:--:|:-------|:--:|:--:|
 |[G-01.1-3]| Tightly pack storage for better gas saving  | 3 | 57300 total |
 | | `QuestFactory` contract storage |  | 4000 |
 | | `struct Quest` |  | 34200 |
 | | `Quest` contract storage |  | 19100 |
-|[G-02]| Don't initialize storage with default value | 2 | 2900 |
+|[G-02]| Don't initialize storage with default value | 1 | 2900 |
 |[G-03]| Redundant condition check | 1 | 25 |
 |[G-04]| Don't compare a boolean with `true` | 2 | 6 |
+| **Total**| | | **60231 gas saved** |
 
 
 ## [G-01] Tightly pack storage for better gas saving
