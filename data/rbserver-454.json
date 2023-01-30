@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "rbserver",
+  "risk": "2",
+  "title": "ERC20 quest does not support rebasing tokens",
+  "issueId": 454,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/454"
+}
