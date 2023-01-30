@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "hansfriese",
+  "risk": "2",
+  "title": "`Erc20Quest.withdrawRemainingTokens` after `withdrawFee` can revert",
+  "issueId": 585,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/585"
+}
