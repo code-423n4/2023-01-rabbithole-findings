@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Phenomana",
+  "risk": "2",
+  "title": "The start() function fails to check if the quest has already been started",
+  "issueId": 374,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/374"
+}
