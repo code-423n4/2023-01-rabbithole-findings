@@ -91,3 +91,7 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 
 Suggestion:  using ``string`` for ``questId`` will waste much gas especially when it is used in mappings. Use ``uint`` instead and use OpenZeppelin's counter.sol for generating questId. Introduce ``questTitle`` to store the title information.
 https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Counters.sol
+
+G8. It can be gas saving to eliminate the following checks since they will be checked again in later code. 
+a) https://github.com/code-423n4/2023-01-numoen/blob/2ad9a73d793ea23a25a381faadc86ae0c8cb5913/src/core/Lendgine.sol#L87
+
