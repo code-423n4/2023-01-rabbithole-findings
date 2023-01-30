@@ -80,6 +80,38 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 
 Manual Analysis
 
-## Recommended Mitigation Steps
+### Recommended Mitigation Steps
 
 Recommend defining constants for the numbers and values used throughout the code.
+
+# 4: USE OF BLOCK.TIMESTAMP
+
+Vulnerability details
+
+### Context:
+
+Block timestamps have been used historically for a number of purposes, including entropy for random numbers (see the Entropy Illusion for more information), locking funds for a set amount of time, and numerous state-changing time-dependent conditional statements. The ability of miners to slightly modify timestamps can be risky if block timestamps are used improperly in smart contracts.
+
+Reference: https://swcregistry.io/docs/SWC-116 
+
+## Proof of Concept
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L35 
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L36 
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L77 
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L90  
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L102 
+
+## Tools Used
+
+Manual Analysis
+
+### Recommended Mitigation Steps
+
+1. Block timestamps shouldn't be utilized to create random numbers or entropy.
+
+2. Use of trusted oracles
