@@ -1,6 +1,6 @@
 # QA Report for RabbitHole Quest Protocol contest
 ## Overview
-During the audit, 8 low issues were found.
+During the audit, 8 low and 7 non-critical issues were found.
 
 № | Title | Risk Rating  | Instance Count
 --- | --- | --- | ---
@@ -12,6 +12,13 @@ L-5 |ECDSAUpgradeable.recover return value is not checked | Low | 2
 L-6 | Max limit can be set | Low | 1
 L-7 | Sign change | Low | 1
 L-8 | Checks can be added | Low | 3
+NC-1 | Unused named return variables | Non-Critical | 2
+NC-2 | Order of Functions | Non-Critical | 1
+NC-3 | Order of Layout | Non-Critical | 3
+NC-4 | Missing leading underscores | Non-Critical | 2
+NC-5 | Typos | Non-Critical | 1
+NC-6 | Open TODOs | Non-Critical | 1
+NC-7 | Maximum line length exceeded | Non-Critical | 1
 
 ## Low Risk Findings(8)
 ### L-1. Misleading modifier
@@ -119,3 +126,89 @@ In Quest constructor it can be checked that:
 
 ##### Recommendation
 Consider adding more check.
+#
+## Non-Critical Risk Findings(7)
+### NC-1. Unused named return variables
+##### Description
+Both named return variable(s) and return statement are used.
+##### Instances
+- https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L185
+- https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L114
+
+##### Recommendation
+To improve clarity use only named return variables.  
+For example, change:
+```
+function functionName() returns (uint id) {
+    return x;
+```
+to
+```
+function functionName() returns (uint id) {
+    id = x;
+```
+#
+### NC-2. Order of Functions
+##### Description
+According to [Style Guide](https://docs.soliditylang.org/en/v0.8.16/style-guide.html#order-of-functions), ordering helps readers identify which functions they can call and to find the constructor and fallback definitions easier.  
+Functions should be grouped according to their visibility and ordered:
+1) constructor
+2) receive function (if exists)
+3) fallback function (if exists)
+4) external
+5) public
+6) internal
+7) private
+##### Instances
+- [```function withdrawRemainingTokens(address to_) public override onlyOwner {```](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L54) (public function should be placed before internal)
+
+##### Recommendation
+Reorder functions where possible.
+#
+### NC-3. Order of Layout
+##### Description
+According to [Order of Layout](https://docs.soliditylang.org/en/v0.8.16/style-guide.html#order-of-layout), inside each contract, library or interface, use the following order:
+1) Type declarations
+2) State variables
+3) Events
+4) Modifiers
+5) Functions
+##### Instances
+- [```modifier onlyAdminWithdrawAfterEnd() {```](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L76) 
+- [```modifier onlyStarted() {```](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L82) 
+- [```modifier onlyQuestActive() {```](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L88) 
+
+##### Recommendation
+Place modifiers before constructor.
+#
+### NC-4. Missing leading underscores 
+##### Description
+Internal and private state variables and functions should have a leading underscore:
+##### Instances
+- [```function grantDefaultAdminAndCreateQuestRole(address account_) internal {```](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L152) 
+- [```mapping(uint256 => bool) private claimedList;```](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L24) 
+
+##### Recommendation
+Add leading underscores where needed.
+#
+### NC-5. Typos
+##### Instances
+- [```/// @dev set or remave a contract address to be used as a reward```](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L176) => ```rename```
+
+#
+### NC-6. Open TODOs
+##### Instances
+- [```// TODO clean this whole thing up```](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuest.sol#L4) 
+
+##### Recommendation
+Resolve issues.
+#
+### NC-7. Maximum line length exceeded
+##### Description
+According to [Style Guide](https://docs.soliditylang.org/en/v0.8.16/style-guide.html#maximum-line-length), maximum suggested line length is 120 characters.  Longer lines make the code harder to read.
+##### Instances
+- [```return ReceiptRendererContract.generateTokenURI(tokenId_, questId, totalParticipants, claimed, rewardAmount, rewardAddress);```](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L172) 
+
+##### Recommendation
+Make the lines shorter.
+#
