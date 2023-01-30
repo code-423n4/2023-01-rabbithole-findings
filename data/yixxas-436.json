@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "yixxas",
+  "risk": "2",
+  "title": "Protocol fee recipient can drain all reward tokens from protocol",
+  "issueId": 436,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/436"
+}
