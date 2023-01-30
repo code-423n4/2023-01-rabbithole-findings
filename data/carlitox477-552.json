@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "carlitox477",
+  "risk": "3",
+  "title": "DOS risk if enough tokens are minted in Quest.claim can lead, at least, to transaction fee lost",
+  "issueId": 552,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/552"
+}
