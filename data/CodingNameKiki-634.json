@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "CodingNameKiki",
+  "risk": "3",
+  "title": "Incase a malicious attack occurs and the quest is paused, the owner won't be able to withdraw some of his tokens back.",
+  "issueId": 634,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/634"
+}
