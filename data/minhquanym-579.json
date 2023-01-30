@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "minhquanym",
+  "risk": "2",
+  "title": "All tokens in Erc1155Quest should not be withdrawn before users claim",
+  "issueId": 579,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/579"
+}
