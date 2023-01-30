@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "rbserver",
+  "risk": "2",
+  "title": "Anyone can call `withdrawFee` function for an ERC20 quest and can possibly prevent holder of RabbitHole receipt from claiming rewards",
+  "issueId": 442,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/442"
+}
