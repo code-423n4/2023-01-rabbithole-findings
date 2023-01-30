@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "cryptostellar5",
+  "risk": "2",
+  "title": "`hash` and `signature_` can be obtained from the mempool when `recoverSigner` is executed",
+  "issueId": 639,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/639"
+}
