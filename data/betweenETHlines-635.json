@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "betweenETHlines",
+  "risk": "2",
+  "title": "Royalty logic might result in DoS with certain marketplaces",
+  "issueId": 635,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/635"
+}
