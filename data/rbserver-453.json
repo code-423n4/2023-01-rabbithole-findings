@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "rbserver",
+  "risk": "3",
+  "title": "Signature can be replayed for minting RabbitHole receipts on different chains",
+  "issueId": 453,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/453"
+}
