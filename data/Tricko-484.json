@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "Tricko",
+  "risk": "2",
+  "title": "Signature-Hash pairs can be used to mint and claim rewards after `endTime_`, leading to a potential loss of funds.",
+  "issueId": 484,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/484"
+}
