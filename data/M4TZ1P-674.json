@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "M4TZ1P",
+  "risk": "3",
+  "title": "protocolFeeRecipient might take unclaimed reward token after quest ends.",
+  "issueId": 674,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/674"
+}
