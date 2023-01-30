@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "hansfriese",
+  "risk": "3",
+  "title": "The `onlyMinter` modifier checks the wrong condition.",
+  "issueId": 534,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/534"
+}
