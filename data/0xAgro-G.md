@@ -6,7 +6,6 @@
 3. [**x += y Used For State Variables**](#3-x--y-Used-For-State-Variables)
 4. [**Unnecessary Variable Initialization**](#4-Unnecessary-Variable-Initialization) ([+1](https://gist.github.com/GalloDaSballo/39b929e8bd48704b9d35b448aaa29480#gas-7-dont-initialize-variables-with-default-value))
 5. [**Variables Can Be Made Immutable**](#5-Variables-Can-Be-Made-Immutable)
-6. [**Unnecessary Cast**](#6-Unnecessary-Cast)
 
 ## 1. Explicit true/false Checks
 
@@ -91,16 +90,4 @@ Variables that are only set in the constructor can be made `Immutable` to save g
 **Suggested Change**
 ```solidity
 21:	string public immutable questId;
-```
-
-## 6. Unnecessary Cast
-
-In [RabbitHoleReceipt.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol) `QuestFactoryContract` is checked for the zero address. In checking for the zero address, the zero address is cast to type `IQuestFactory`. Consider removing the cast to save gas.
-
-```solidity
-162:	require(QuestFactoryContract != IQuestFactory(address(0)), 'QuestFactory not set');
-```
-**Suggested Change**
-```solidity
-162:	require(QuestFactoryContract != address(0), 'QuestFactory not set');
 ```
