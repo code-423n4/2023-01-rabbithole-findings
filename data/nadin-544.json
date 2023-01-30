@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "nadin",
+  "risk": "2",
+  "title": "## [M-02] No reentrancy guard on mint() function that has a callback",
+  "issueId": 544,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/544"
+}
