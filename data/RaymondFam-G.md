@@ -103,6 +103,19 @@ Here are some of the instances entailed:
 
 125:        uint[] memory filteredTokens = new uint[](foundTokens);
 ```
+## Redundant modifier visibility
+`withdrawRemainingTokens()` in Erc20Quest.sol and Erc1155Quest.sol has `super.withdrawRemainingTokens()` execute in the first code line of the function logic. Since the parental function will have the same modifier `onlyOwner` run again, the child function may have the same modifier removed from its visibility (just as it has been done on [`start()`](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L32-L37)) to save gas both on contract deployment and function calls:
+
+[File: Erc20Quest.sol#L81-L82](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L81-L82)
+[File: Erc1155Quest.sol#L54-L55](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L54-L55)
+
+```diff
+-    function withdrawRemainingTokens(address to_) public override onlyOwner {
++    function withdrawRemainingTokens(address to_) public override {
+        super.withdrawRemainingTokens(to_);
+
+        [ ... ]
+```
 ## += and -= cost more gas
 `+=` and `-=` generally cost 22 more gas than writing out the assigned equation explicitly. The amount of gas wasted can be quite sizable when repeatedly operated in a loop.
 
