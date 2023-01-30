@@ -9,6 +9,7 @@
 - [N-02] abi encode
 - [N-03] Rename nonClaimableTokens variable 
 - [N-04] INCLUDE RETURN PARAMETERS IN NATSPEC COMMENTS
+- [N-05] FOR MODERN AND MORE READABLE CODE; UPDATE IMPORT USAGES
 - [S-01] Generating Perfect Code Headers
 
 ## [L-01] Use safeTransferOwnership instead of transferOwnership function
@@ -90,6 +91,17 @@ Some code analysis programs do analysis by reading NatSpec details, if they canâ
 Recommended Mitigation Steps
 Include return parameters in NatSpec comments
 
+## [N-05] FOR MODERN AND MORE READABLE CODE; UPDATE IMPORT USAGES
+
+Description:
+Solidity code is also cleaner in another way that might not be noticeable: the struct Point. We were importing it previously with global import but not using it. The Point struct polluted the source code with an unnecessary object we were not using because we did not need it.
+This was breaking the rule of modularity and modular programming: only import what you need Specific imports with curly braces allow us to apply this rule better.
+
+Affected Code:
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L4-L13
+
+Example:
+import {contract1 , contract2} from "RabbitHoleReceipt.sol";
 
 ## [S-01] Generating Perfect Code Headers
 I would recommend using header for Solidity code layout and readability:
