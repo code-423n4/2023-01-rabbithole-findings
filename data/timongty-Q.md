@@ -25,7 +25,6 @@ PS: this is my first time submitting a bug bounty so any feedback will be greatl
         feeWithdrawn = true;
     }
 
-
 > Link to Github Reference: https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L100-L104
 
 
@@ -45,12 +44,14 @@ PS: this is my first time submitting a bug bounty so any feedback will be greatl
 	    	function receiptRedeemers() public view returns (uint256) {
         		return questFactoryContract.getNumberMinted(questId);
 		 }
-Link to Github Reference: https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L52-L63
+> Link to Github Reference: https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L52-L63
 
 
 **[L-3] totalParticipants for any quest should be checked that it does not exceed total receipts minted**
-    - Issue: While the totalParticipants variable is set upon creation of a quest to determine the max total rewards, there are no checks to ensure that a quest’s total receipts minted does not exceed its total participants number. This may result in scenarios where users are unable to claim their quest reward even if they have successfully completed the action.
-    - Suggested Fix: Check the numberMinted of a quest against it’s totalParticipants in the mint() function in RabbitHoleReceipt contract
+
+> Issue: While the totalParticipants variable is set upon creation of a quest to determine the max total rewards, there are no checks to ensure that a quest’s total receipts minted does not exceed its total participants number. This may result in scenarios where users are unable to claim their quest reward even if they have successfully completed the action.
+
+> Suggested Fix: Check the numberMinted of a quest against it’s totalParticipants in the mint() function in RabbitHoleReceipt contract
 
              (address questAddress, uint totalParticipants, ) = QuestFactoryContract.questInfo(questId);
              IQuest questContract = IQuest(questAddress);
@@ -58,4 +59,4 @@ Link to Github Reference: https://github.com/rabbitholegg/quest-protocol/blob/8c
              uint totalParticipants = questContract.totalParticipants;
              if (numberMinted >= totalParticipants) revert TotalParticipantsReached();
 
-Link to Github Reference: https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L95-L104
+> Link to Github Reference: https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L95-L104
