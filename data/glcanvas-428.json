@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "glcanvas",
+  "risk": "2",
+  "title": "Possible out of gas error during claiming",
+  "issueId": 428,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/428"
+}
