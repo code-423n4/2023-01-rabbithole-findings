@@ -220,3 +220,25 @@ For instance, the custom error instance below may be refactored as follows:
 +        if (questFee_ > 10_000) revert QuestFeeTooHigh();
         questFee = questFee_;
 ```
+## Events associated with setter functions
+Consider having events associated with setter functions emit both the new and old values instead of just the new value.
+
+Here are some of the instances entailed:
+
+[File: RabbitHoleTickets.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol)
+
+```solidity
+68:        emit RoyaltyFeeSet(royaltyFee_);
+
+75:        emit MinterAddressSet(minterAddress_);
+```
+## Over distribution of on-chain actions
+The design of the protocol seems to be overselling or over-distributing on-chain actions as can be seen from the if block below:
+
+[File: QuestFactory.sol#L220](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L220)
+
+```solidity
+        if (quests[questId_].numberMinted + 1 > quests[questId_].totalParticipants) revert OverMaxAllowedToMint();
+```
+It is not sure whether or not the users are going to be compensated via a new Erc20Quest contract. If not, the amount of on-chain actions to be completed should not exceed `totalParticipants` to avoid these specific DOS grievances.
+ 
