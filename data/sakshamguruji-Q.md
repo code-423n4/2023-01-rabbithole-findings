@@ -35,6 +35,16 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L211
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L222
 
+## VARIABLES SHOULD BE RENAMED
+
+### Description:
+
+The variable unclaimedTokens here https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L84
+and the variable nonClaimableTokens here https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L85
+should be renamed to something like unclaimedTokensValue and nonClaimableTokensValue as these variables depict the amount these non claimable tokens are worth 
+and not the amount of tokens.
+
+
 ## LACK OF ZERO ADDRESS/AMOUNT CHECKS
 
 ### Description:
