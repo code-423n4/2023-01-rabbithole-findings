@@ -81,3 +81,39 @@ if (keccak256(abi.encodePacked(contractType_)) == keccak256(abi.encodePacked('er
 
 Rather than using `abi.encodePacked` for appending bytes, since version `0.8.4`, `bytes.concat()` is enabled.
 Since version `0.8.4` for appending bytes, `bytes.concat()` can be used instead of `abi.encodePacked()`.
+
+
+# 5. INSUFFICIENT COVERAGE
+
+## Description:
+Testing all functions is best practice in terms of security criteria.
+
+This function test coverage is not found in test files.
+
+[RabbitHoleReceipt.sol#L178-L194](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L178-L194)
+
+```Solidity
+ function royaltyInfo(uint256 tokenId_, uint256 salePrice_)
+        external
+        view
+        override
+        returns (address receiver, uint256 royaltyAmount)
+    {
+        require(_exists(tokenId_), 'Nonexistent token');
+
+        uint256 royaltyPayment = (salePrice_ * royaltyFee) / 10_000;
+        return (royaltyRecipient, royaltyPayment);
+    }
+
+function supportsInterface(bytes4 interfaceId_)
+        public
+        view
+        virtual
+        override(ERC721Upgradeable, ERC721EnumerableUpgradeable, IERC165Upgradeable)
+        returns (bool)
+    {
+        return interfaceId_ == type(IERC2981Upgradeable).interfaceId || super.supportsInterface(interfaceId_);
+    }
+```
+
+Due to its capacity, test coverage is expected to be 100%.
