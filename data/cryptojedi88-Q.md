@@ -1,0 +1,3 @@
+Link to the affected code - https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L57
+
+Generally, instead of implementing `pause()` and `unpause()` functions on your own, it is recommended to use the Pausable contract from OpenZeppelin as a best practice. It covers a lot of edge cases and plays well with the Access Control mechanisms as well. If you are implementing your own pause functionality, you might not foresee some attack vectors and it might lead to unintended consequences.
