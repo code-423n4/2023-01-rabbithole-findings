@@ -4,6 +4,7 @@
 - [L-02] Test coverage is only at 89%, where it should be 100%
 - [L-03] INITIALIZE() FUNCTION CAN BE CALLED BY ANYBODY
 - [L-04] LOSS OF PRECISION DUE TO ROUNDING
+- [L-05] LACK OF CHECKS ADDRESS(0)
 - [N-01] pragma solidity ^ should not be used
 - [N-02] abi encode
 - [N-03] Rename nonClaimableTokens variable 
@@ -38,6 +39,16 @@ Add a control that makes initialize() only call the Deployer Contract;
 ## [L-04] LOSS OF PRECISION DUE TO ROUNDING
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L95-L98
 
+## [L-05] LACK OF CHECKS ADDRESS(0)
+The following methods have a lack of checks if the received argument is an address, it’s good practice in order to reduce human error to check that the address specified in the constructor or initialize is different than address(0).
+
+Affected Code: 
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L71-L73
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L83-L86
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L179
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L40
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L44
+
 
 ## [N-01] pragma solidity ^ should not be used
 
@@ -46,7 +57,7 @@ Currently: pragma solidity ^0.8.15 was used across all files
 Solution: Should not use ^ due as some functions may be deprecate and will not be able to function as it is
 
 ## [N-02] abi encode
-
+Affected Code: 
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L72
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L105
 
