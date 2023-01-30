@@ -1,0 +1,140 @@
+## TODO
+Open TODO can point to an architecture or programming issue needing to be resolved. 
+
+Here is a specific instance found.
+
+[IQuest.sol#L4](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuest.sol#L4)
+
+Suggested fix:
+
+It is recommended resolving them before deploying.
+
+## DOUBLE CALL ON ONLYOWNER
+In Erc20Quest.sol and Erc1155Quest.sol, calling `withdrawRemainingTokens()` will end up having the modifier `onlyOwner()` invoked twice, i.e. first in the function visibility itself, and then in `super.withdrawRemainingTokens()` again.
+
+[Erc20Quest.sol#L81-L82](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L81-L82)
+[Erc1155Quest.sol#L54-L55](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc1155Quest.sol#L54-L55)
+
+```
+    function withdrawRemainingTokens(address to_) public override onlyOwner {
+        super.withdrawRemainingTokens(to_);
+        ...
+```
+[Quest.sol#L150](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L150)
+
+```
+    function withdrawRemainingTokens(address to_) public virtual onlyOwner onlyAdminWithdrawAfterEnd {}
+```
+Suggested fix:
+
+Remove `onlyOwner` from the child function visibility.
+
+## COMMENT AND CODE LINE LENGTH
+Code lines are typically limited to 80 characters, but may be stretched beyond this limit as monitor screens theses days are comparatively larger. Considering the files will most likely reside in GitHub that will have a scroll bar automatically kick in when the length is over 164 characters, all code lines and comments should be split before hitting this length. 
+
+Here are the instances found.
+
+[IQuestFactory.sol#L16](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/interfaces/IQuestFactory.sol#L16)
+[Erc20Quest.sol#L56-L57](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L56-L57)
+
+Suggested fix:
+
+Try limiting the length of comments and/or code lines to 80 - 100 characters long for readability sake.
+
+## ON-CHAIN ACTIONS OVERSOLD
+On-chain actions seems to be more than the total participants as is evidenced in the code lines below. This could lead to users completing their on-chain tasks but not being rewarded when `quests[questId_].totalParticipants` is hit.
+
+[QuestFactory.sol#L219-L229](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L219-L229)
+
+```
+    function mintReceipt(string memory questId_, bytes32 hash_, bytes memory signature_) public {
+        if (quests[questId_].numberMinted + 1 > quests[questId_].totalParticipants) revert OverMaxAllowedToMint();
+        ...
+```
+Suggested fix:
+
+Limit the amount of on-chain actions to `totalParticipants` or document clearly whether or not excess participants are going to be able to mint their receipts via a different `questId`.
+
+## SPELLING MISTAKES
+[QuestFactory.sol#L176](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L176)
+
+```
+    @audit remave
+    /// @dev set or remave a contract address to be used as a reward
+```
+## FUNCTIONS OF SIMILAR LOGIC
+In Quest.sol, `pause()` and `unpause()` share similar code logic.
+
+[Quest.sol#L55-L65](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L55-L65)
+
+```
+    function pause() public onlyOwner onlyStarted {
+        isPaused = true;
+    }
+
+    function unPause() public onlyOwner onlyStarted {
+        isPaused = false;
+    }
+```
+Suggested fix:
+
+It is recommended combining them into 1 function that could toggle between `true` and `false`.
+
+## CAMEL CASE
+The following instances are named with a capital prefix.
+
+[RabbitHoleReceipt.sol#L35-L36](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L35-L36)
+
+```
+    ReceiptRenderer public ReceiptRendererContract;
+    IQuestFactory public QuestFactoryContract;
+```
+Suggested fix:
+
+It is recommended adopting camel case when naming these public variables.
+
+## STORAGE GAP FOR UPGRADEABLE CONTRACTS
+Consider adding a storage gap at the end of each upgradeable contract. In the event some contracts needed to inherit from them, there would not be an issue shifting down of storage in the inheritance chain. Generally, storage gaps are a novel way of reserving storage slots in a base contract, allowing future versions of that contract to use up those slots without affecting the storage layout of child contracts. If not, the variable in the child contract might be overridden whenever new variables are added to it. This storage collision could have unintended and vulnerable consequences to the child contracts.
+
+Here are the 2 contract instances found.
+
+[QuestFactory.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol)
+[RabbitHoleReceipt.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol)
+
+Suggested fix:
+
+It is recommended adding the following code block at the end of the upgradeable contract:
+
+```
+    /**
+     * @dev This empty reserved space is put in place to allow future versions to add new
+     * variables without shifting down storage in the inheritance chain.
+     * See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+     */
+    uint256[49] private __gap;
+```
+## RENOUNCEABLE OWNERSHIP
+When inheriting from Openzeppelin’s OwnableUpgradeable.sol, `renounceOwnership()` is one of the callable functions included. This could pose a risk if the ownership is renounced for any other reason than by design. Renouncing ownership will leave the contract without an owner, thereby denying access to any functionality that is only callable by the owner.
+
+Here is 1 specific contract instance found.
+
+[QuestFactory.sol](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol)
+
+## BOOLEAN EXPRESSIONS TO BOOLEAN LITERALS COMPARISON
+It is not expedient comparing a boolean value to a boolean literal that would incur the additional `ISZERO` opcode operation.
+
+Here are the 2 instances found.
+
+[QuestFactory.sol#L73](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L73)
+
+```
+            if (rewardAllowlist[rewardTokenAddress_] == false) revert RewardNotAllowed();
+```
+[QuestFactory.sol#L221](https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L221)
+
+```
+        if (quests[questId_].addressMinted[msg.sender] == true) revert AddressAlreadyMinted();
+```
+Suggested fix:
+
+Remove `== true` and replace `== false` with the prefix negation `!`.
