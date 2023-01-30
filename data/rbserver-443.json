@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "rbserver",
+  "risk": "2",
+  "title": "Calling `Erc1155Quest.withdrawRemainingTokens` function for an ERC1155 quest can possibly withdraw rewards that are associated with minted RabbitHole receipts",
+  "issueId": 443,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/443"
+}
