@@ -187,3 +187,18 @@ for (uint i = 0; i < foundTokens; i++) {
     filteredTokens[i] = tokenIdsForQuest[i];
 }
 ```
+
+--- 
+
+## [G-11] Loads struct into memory to save gas
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L215-L229
+
+use next pattern:
+```solidity
+
+Quest memory quest = quests[questID_];
+```
+
+Next read from this struct, *but remember that you must write into storage*
+  
