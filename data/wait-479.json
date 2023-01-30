@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "wait",
+  "risk": "2",
+  "title": "Erc1155Quest.sol#withdrawRemainingTokens and Erc20Quest.sol#withdrawRemainingTokens are not implemented consistently",
+  "issueId": 479,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/479"
+}
