@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "haku",
+  "risk": "2",
+  "title": "ProtocolFeeRecipient changes may cause protocol fees from past quests to be handled incorrectly.",
+  "issueId": 472,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/472"
+}
