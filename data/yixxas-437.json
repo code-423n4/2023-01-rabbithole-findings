@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "yixxas",
+  "risk": "2",
+  "title": "It is possible for receipt to be minted without permission if claimSignerAddress is address 0",
+  "issueId": 437,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/437"
+}
