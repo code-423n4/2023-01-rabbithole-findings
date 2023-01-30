@@ -1,0 +1,8 @@
+{
+  "contest": 208,
+  "handle": "CodingNameKiki",
+  "risk": "3",
+  "title": "In ERC1155 quests the owner withdraws all of the remaining tokens even for the unclaimed receipts. Leaving users who didn't claim their receipts before the quest end time unable to claim rewards.",
+  "issueId": 631,
+  "issueUrl": "https://github.com/code-423n4/2023-01-rabbithole-findings/issues/631"
+}
