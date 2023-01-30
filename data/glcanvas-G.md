@@ -201,4 +201,12 @@ Quest memory quest = quests[questID_];
 ```
 
 Next read from this struct, *but remember that you must write into storage*
+
+--- 
+
+## [G-12] Check endTime_, startTime_ on the ```QuestFactory``` side to save gas
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L63-L64
+
+Check that time is in range to save gas if checks failed
   
