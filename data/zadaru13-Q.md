@@ -2,9 +2,12 @@
 
 - [L-01] Use safeTransferOwnership instead of transferOwnership function
 - [L-02] Test coverage is only at 89%, where it should be 100%
+- [L-03] INITIALIZE() FUNCTION CAN BE CALLED BY ANYBODY
+- [L-04] LOSS OF PRECISION DUE TO ROUNDING
 - [N-01] pragma solidity ^ should not be used
 - [N-02] abi encode
 - [N-03] Rename nonClaimableTokens variable 
+- [N-04] INCLUDE RETURN PARAMETERS IN NATSPEC COMMENTS
 - [S-01] Generating Perfect Code Headers
 
 ## [L-01] Use safeTransferOwnership instead of transferOwnership function
@@ -21,6 +24,19 @@ It’s crucial to write tests with possibly 100% coverage for smart contract sys
 It is recommended to write appropriate tests for all possible code streams and especially for extreme cases.
 But the other important point is the test context.
 Tests written with Solidity are safer, so it is recommended to focus on tests with Foundry.
+
+
+## [L-03] INITIALIZE() FUNCTION CAN BE CALLED BY ANYBODY
+initialize() function can be called anybody when the contract is not initialized.
+
+More importantly, if someone else runs this function, they will have full authority because of the __Ownable_init() function. Also, there is no 0 address check in the address arguments of the initialize() function, which must be defined.
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L37-L50
+
+Recommended Mitigation Steps
+Add a control that makes initialize() only call the Deployer Contract;
+
+## [L-04] LOSS OF PRECISION DUE TO ROUNDING
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L95-L98
 
 
 ## [N-01] pragma solidity ^ should not be used
@@ -41,7 +57,30 @@ Since version 0.8.4 for appending bytes, bytes.concat() can be used instead of a
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L85
 Suggest to change a more understandable/readable variable name.
 
-## [S-02] Generating Perfect Code Headers
+## [N-04] INCLUDE RETURN PARAMETERS IN NATSPEC COMMENTS
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L133-L137
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L139-L142
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Quest.sol#L144-L147
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L157-L173
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L175-L186
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L188-L194
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L191-L195
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L197-L205
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L207-L213
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/Erc20Quest.sol#L95-L98
+
+Context
+All Contracts
+https://docs.soliditylang.org/en/v0.8.15/natspec-format.html
+If Return parameters are declared, you must prefix them with ”/// @return”.
+Some code analysis programs do analysis by reading NatSpec details, if they can’t see the “@return” tag, they do incomplete analysis.
+
+Recommended Mitigation Steps
+Include return parameters in NatSpec comments
+
+
+## [S-01] Generating Perfect Code Headers
 I would recommend using header for Solidity code layout and readability:
 https://github.com/transmissions11/headers
 /*//////////////////////////////////////////////////////////////
