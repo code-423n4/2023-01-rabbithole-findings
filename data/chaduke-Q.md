@@ -9,7 +9,7 @@ The correction is
 ```
 
 QA2. When admins/owner set important address parameters, it is important to do a zero address check and also 
-``X != address(this)`` check to ensure not losing funding due to mistakes. 
+``X != address(this)`` check to ensure not losing funding due to mistakes.  Timelock might also be introduced to ensure further security. 
 
 1) https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L71-L73
 2) https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L77-L79
@@ -60,7 +60,7 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 
 
 The mitigation is to add such a check:
-```
+```javascript
  function setRoyaltyFee(uint256 royaltyFee_) public onlyOwner {
         if(royaltyFee > 10_000) revert royaltyFeeTooLarge();   // audit: add this check 
 
@@ -73,7 +73,7 @@ QA7. If a sponsor sends the wrong ERC20/ERC1155 to the quest contract (e.g. due 
 
 Mitigation: introduce generic ``withdrawERC20(address tokenAddress)`` and ``withdraw1155(address tokenAddress)``so that the host can withdraw arbitrary ERC20/ERC1155 tokens. 
 
-QA8. The mint() function of the RabbitHoleReceipt violates the separation of duty rule. The minter of one quest can mint tokens for another quest.
+QA8. The ``mint()`` function of the RabbitHoleReceipt violates the separation of duty rule. The minter of one quest can mint tokens for another quest.
 https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L98-L104
 For example, Alice is the minter for quest A, so she has the role of minter, then she can also call mint(to, B) to mint receipts for quest B, as a result, she can claim rewards from quest B that has nothing to do with quest A.
 
