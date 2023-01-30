@@ -1,8 +1,10 @@
+
 | Finding |Details|Context|
 |:--:|:-------|:--:|
 |[L-01]| Missing sanity check for royalty fee  | 2 |
 |[N-01]| Useful information in events should be indexed | 1 |
 |[N-02]| Don't compare a boolean with `true` | 2 |
+|[N-03]| Define a `constant` instead of using a magic value | 3 |
 
 ## [L-01] Missing sanity check for royalty fee.
 
@@ -31,3 +33,21 @@ https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c21658
 A boolean expression in an if-condition is straightforwardly evaluated. There is no need to check `if (condition == true)`. 
 
 Removing the check will also save some gas.
+
+## [N-03] Define a `constant` instead of using a magic value
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleTickets.sol#L113
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/RabbitHoleReceipt.sol#L184
+
+```solidity 
+uint256 royaltyPayment = (salePrice_ * royaltyFee) / 10_000;
+```
+
+https://github.com/rabbitholegg/quest-protocol/blob/8c4c1f71221570b14a0479c216583342bd652d8d/contracts/QuestFactory.sol#L187
+
+
+```solidity 
+if (questFee_ > 10_000) revert QuestFeeTooHigh();
+```
+
